@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".Splash_Activity">
+    tools:context=".SplashActivity">
 
     <com.agrawalsuneet.svgloaderspack.loaders.SVGLoader
         android:id="@+id/loading"
@@ -20,7 +19,7 @@
         app:svgloader_interpolator="@android:anim/decelerate_interpolator"
         app:svgloader_markerLength="30dp"
         app:svgloader_shapesStringArray="@array/splash_logo_path"
-        app:svgloader_timePerShape="3000"
+        app:svgloader_timePerShape="2000"
         app:svgloader_viewportHeight="450"
         app:svgloader_viewportWidth="470" />
 
