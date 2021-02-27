@@ -1,15 +1,13 @@
-package com.msu.footprints;
+package com.msu.footprints.main;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 
 import com.agrawalsuneet.svgloaderspack.loaders.SVGLoader;
+import com.msu.footprints.R;
 
 public class SplashActivity extends AppCompatActivity{
 
@@ -36,7 +34,7 @@ public class SplashActivity extends AppCompatActivity{
         svgLoader.endAnimation();
 
         new Handler().postDelayed(() -> {
-            startActivity(new Intent(SplashActivity.this,MainActivity.class));
+            startActivity(new Intent(SplashActivity.this, MainActivity.class));
             this.finish();
         },3700);
 

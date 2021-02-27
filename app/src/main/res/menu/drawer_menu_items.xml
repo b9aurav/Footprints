@@ -15,6 +15,9 @@
         android:id="@+id/g2"
         android:checkableBehavior="single">
         <item
+            android:id="@+id/mSponsor"
+            android:title="Sponsors" />
+        <item
             android:id="@+id/mContactUs"
             android:title="Contact Us" />
         <item

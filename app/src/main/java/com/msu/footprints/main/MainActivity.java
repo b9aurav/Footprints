@@ -1,4 +1,4 @@
-package com.msu.footprints;
+package com.msu.footprints.main;
 
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -18,6 +18,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.msu.footprints.R;
 
 public class MainActivity extends AppCompatActivity{
 
