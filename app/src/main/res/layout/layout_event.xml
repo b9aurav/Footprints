@@ -1,31 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.loopeer.shadow.ShadowView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:elevation="10dp"
+    android:foreground="?attr/selectableItemBackground"
+    android:paddingStart="5dp"
+    android:paddingTop="10dp"
+    android:paddingEnd="5dp"
+    android:paddingBottom="10dp"
+    app:backgroundColor="@color/gray"
+    app:cornerRadiusBR="20dp"
+    app:cornerRadiusTL="20dp"
+    app:shadowColor="@color/orange_logo"
+    app:shadowMargin="15dp"
+    app:shadowRadius="7dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/ivEvent"
-            android:layout_width="wrap_content"
-            android:layout_height="150dp"
-            android:src="@drawable/image_drawer_header" />
+        <!--        <developer.shivam.library.DiagonalView-->
+        <!--            android:id="@+id/event_image"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="150dp"-->
+        <!--            diagonal:diagonalColor="#FFFFFF"-->
+        <!--            diagonal:backgroundColor="#00F44336"-->
+        <!--            diagonal:diagonalGravity="right"-->
+        <!--            diagonal:angle="10"-->
+        <!--            android:src="@drawable/image_drawer_header"/>-->
 
         <TextView
             android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Title"/>
+            android:gravity="center_horizontal"
+            android:text="Title"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textColor="@color/p_red"
+            android:textSize="20dp" />
+
+<!--        <com.jackandphantom.paletteshadowview.PaletteShadowView-->
+<!--            android:id="@+id/banner"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:paletteOffsetX="15"-->
+<!--            app:paletteOffsetY="15"-->
+<!--            app:paletteShadowColor="@color/black"-->
+<!--            app:paletteRoundRadius="5"/>-->
+
+        <ImageView
+            android:id="@+id/iv_Event"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
 
         <TextView
             android:id="@+id/tvSummary"
+            android:layout_width="match_parent"
+            android:fontFamily="sans-serif-smallcaps"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Summary"
+            android:textColor="@color/black"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/tvDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Summary"/>
+            android:text="Description"
+            android:textColor="@color/black"
+            android:textSize="15dp" />
 
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</com.loopeer.shadow.ShadowView>

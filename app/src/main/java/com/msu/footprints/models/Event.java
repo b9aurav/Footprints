@@ -11,6 +11,13 @@ public class Event implements Serializable{
     public Event(){
     }
 
+    public Event(String ImageURL, String title, String summary, String des){
+        this.ImageURL = ImageURL;
+        this.Title = title;
+        this.Summary = summary;
+        this.Description = des;
+    }
+
     public String getTitle(){
         return Title;
     }

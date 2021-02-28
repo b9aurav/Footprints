@@ -19,6 +19,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.msu.footprints.R;
+import com.msu.footprints.fragments.AboutUs;
+import com.msu.footprints.fragments.Achievements;
+import com.msu.footprints.fragments.ContactUs;
+import com.msu.footprints.fragments.Home;
+import com.msu.footprints.fragments.Sponsors;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -40,7 +45,6 @@ public class MainActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         if (item.getItemId() == R.id.mReport) {
-            textView.setText("Report");
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -51,6 +55,7 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         drawerLayout = findViewById(R.id.drawerLayout);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -59,24 +64,30 @@ public class MainActivity extends AppCompatActivity{
         actionBarDrawerToggle.syncState();
 
         navigationView = findViewById(R.id.navigationView);
-        textView = findViewById(R.id.textView);
+
+        navigationView.setCheckedItem(R.id.mHome);
+        getSupportFragmentManager().beginTransaction().add(R.id.main_fragment, new Home()).commit();
 
         navigationView.setNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.mHome:
-                    textView.setText("Home");
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new Home()).commit();
                     break;
                 case R.id.mAchievements:
-                    textView.setText("Achievements");
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new Achievements()).commit();
+                    break;
+                case R.id.mSponsor:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new Sponsors()).commit();
                     break;
                 case R.id.mContactUs:
-                    textView.setText("Contact Us");
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new ContactUs()).commit();
                     break;
                 case R.id.mAbout:
-                    textView.setText("About");
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new AboutUs()).commit();
                     break;
                 default:
-                    textView.setText("Error");
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new Home()).commit();
+                    break;
             }
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;
@@ -85,6 +96,7 @@ public class MainActivity extends AppCompatActivity{
         sharedPreferences = getSharedPreferences("FootPrints_Data", MODE_PRIVATE);
         editor = sharedPreferences.edit();
         Switch switchButton = navigationView.getHeaderView(0).findViewById(R.id.switch_dark);
+
         switchButton.setChecked(isDarkThemeOn());
         switchButton.setOnCheckedChangeListener((compoundButton, b) -> {
             changeAppTheme(!b);

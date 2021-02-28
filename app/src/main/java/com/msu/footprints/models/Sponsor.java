@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Sponsor implements Serializable{
     private String ImageURL="";
 
-    public  Sponsor(){
+    public  Sponsor() {
     }
 
     public Sponsor(String imageURL){
