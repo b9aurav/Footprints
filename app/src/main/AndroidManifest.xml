@@ -12,8 +12,6 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.Footprints">
-        <activity android:name=".fragments.Event_adapter"></activity>
-        <activity android:name=".adapters.Event_Adapter" />
         <activity
             android:name=".main.SplashActivity"
             android:screenOrientation="portrait">

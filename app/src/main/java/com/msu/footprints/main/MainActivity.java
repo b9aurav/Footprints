@@ -19,11 +19,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.msu.footprints.R;
-import com.msu.footprints.fragments.AboutUs;
-import com.msu.footprints.fragments.Achievements;
+import com.msu.footprints.fragments.AboutUsFragment;
+import com.msu.footprints.fragments.AchievementFragment;
 import com.msu.footprints.fragments.ContactUs;
-import com.msu.footprints.fragments.Home;
-import com.msu.footprints.fragments.Sponsors;
+import com.msu.footprints.fragments.EventFragment;
+import com.msu.footprints.fragments.SponsorsFragment;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -66,27 +66,27 @@ public class MainActivity extends AppCompatActivity{
         navigationView = findViewById(R.id.navigationView);
 
         navigationView.setCheckedItem(R.id.mHome);
-        getSupportFragmentManager().beginTransaction().add(R.id.main_fragment, new Home()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.main_fragment, new EventFragment()).commit();
 
         navigationView.setNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.mHome:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new Home()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new EventFragment()).commit();
                     break;
                 case R.id.mAchievements:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new Achievements()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new AchievementFragment()).commit();
                     break;
                 case R.id.mSponsor:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new Sponsors()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new SponsorsFragment()).commit();
                     break;
                 case R.id.mContactUs:
                     getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new ContactUs()).commit();
                     break;
                 case R.id.mAbout:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new AboutUs()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new AboutUsFragment()).commit();
                     break;
                 default:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new Home()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new EventFragment()).commit();
                     break;
             }
             drawerLayout.closeDrawer(GravityCompat.START);

@@ -12,23 +12,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.msu.footprints.R;
-import com.msu.footprints.models.Event;
-import com.msu.footprints.models.Sponsor;
+import com.msu.footprints.models.About;
 
-public class Sponsors extends Fragment {
+public class AboutUsFragment extends Fragment {
 
-    RecyclerView sponsors_rv;
-    Sponsor_adapter adapter;
-    Sponsor[] sponsor_data;
+    RecyclerView recyclerView;
+    AboutAdapter adapter;
+    About[] abouts_data;
 
     FirebaseFirestore firebaseFirestore;
-    String ImageURL;
+    String Name, Email;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,38 +33,39 @@ public class Sponsors extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_sponsors, container, false);
+        return inflater.inflate(R.layout.fragment_about, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        sponsors_rv = view.findViewById(R.id.sponsor_rv);
-        sponsors_rv.setLayoutManager(new LinearLayoutManager(getContext()));
-
+        //Initializing RecyclerView
+        recyclerView = view.findViewById(R.id.about_rv);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //Getting data fromFirestore
         firebaseFirestore = FirebaseFirestore.getInstance();
-        firebaseFirestore.collection("Sponsors").get().addOnCompleteListener(task -> {
+        firebaseFirestore.collection("About").get().addOnCompleteListener(task -> {
             if(task.isSuccessful()) {
                 int i = 0;
                 int len = 0;
                 for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                     len++;
                 }
-                sponsor_data = new Sponsor[len];
+                abouts_data = new About[len];
                 for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                    Sponsor sponsor;
-                    ImageURL = documentSnapshot.getString("ImageURL");
-                    sponsor = new Sponsor(ImageURL);
-                    sponsor_data[i] = sponsor;
+                    About about;
+                    Name = documentSnapshot.getString("Name");
+                    Email = documentSnapshot.getString("Email");
+                    about = new About(Name,Email);
+                    abouts_data[i] = about;
                     i++;
                 }
 
                 //Setting Adapter in Recyclerview
-                adapter = new Sponsor_adapter(sponsor_data);
-                sponsors_rv.setAdapter(adapter);
+                adapter = new AboutAdapter(abouts_data);
+                recyclerView.setAdapter(adapter);
             }
         });
     }

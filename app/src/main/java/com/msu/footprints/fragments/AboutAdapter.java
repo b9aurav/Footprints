@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.msu.footprints.R;
 import com.msu.footprints.models.About;
 
-public class About_adapter extends RecyclerView.Adapter<About_adapter.ViewHolder> {
+public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> {
 
     private About[] about_list;
-    About_adapter(About[] list) {
+    AboutAdapter(About[] list) {
         this.about_list = list;
     }
 

@@ -43,6 +43,7 @@ dependencies {
 
     //Firebase
     implementation 'com.google.firebase:firebase-firestore:22.1.0'
+    implementation 'com.firebaseui:firebase-ui-firestore:6.2.1'
 
     //UI
     implementation 'com.agrawalsuneet.androidlibs:svgloaderspack:0.1'

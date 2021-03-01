@@ -1,8 +1,5 @@
 package com.msu.footprints.fragments;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,20 +7,27 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.msu.footprints.R;
 import com.msu.footprints.models.Event;
 
-public class Event_adapter extends RecyclerView.Adapter<Event_adapter.ViewHolder> {
+public class EventAdapter extends FirestoreRecyclerAdapter<Event, EventAdapter.ViewHolder>{
 
-    private Event[] events_list;
-    Event_adapter(Event[] list) {
-        this.events_list = list;
+    private Context context;
+
+    public EventAdapter(Context context, @NonNull FirestoreRecyclerOptions<Event> options){
+        super(options);
+        this.context = context;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View listItem = layoutInflater.inflate(R.layout.layout_event, parent, false);
         ViewHolder viewHolder = new ViewHolder(listItem);
@@ -31,35 +35,25 @@ public class Event_adapter extends RecyclerView.Adapter<Event_adapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-//        final Event myevents_list = events_list[position];
-        holder.title.setText(events_list[position].getTitle());
-        holder.summary.setText(events_list[position].getSummary());
-        holder.description.setText(events_list[position].getDescription());
+    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Event model){
+        holder.title.setText(model.getTitle());
+        holder.summary.setText(model.getSummary());
+        holder.description.setText(model.getDescription());
         Glide.with(holder.context)
-              .load(events_list[position].getImageURL())
-              .into(holder.banner);
+                .load(model.getImageURL())
+                .into(holder.banner);
     }
 
-
-
-
-    @Override
-    public int getItemCount() {
-        return events_list.length;
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder{
         public ImageView banner;
         public TextView title;
         public TextView summary;
         public TextView description;
         public Context context;
 
-        public ViewHolder(View itemview) {
+        public ViewHolder(View itemview){
             super(itemview);
-            this.banner = (ImageView) itemView.findViewById(R.id.iv_Event);
+            this.banner = (ImageView) itemView.findViewById(R.id.ivEvent);
             this.title = (TextView) itemView.findViewById(R.id.tvTitle);
             this.summary = (TextView) itemView.findViewById(R.id.tvSummary);
             this.description = (TextView) itemView.findViewById(R.id.tvDescription);

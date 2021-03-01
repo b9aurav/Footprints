@@ -51,7 +51,7 @@
 <!--            app:paletteRoundRadius="5"/>-->
 
         <ImageView
-            android:id="@+id/iv_Event"
+            android:id="@+id/ivEvent"
             android:layout_width="match_parent"
             android:layout_height="150dp" />
 
