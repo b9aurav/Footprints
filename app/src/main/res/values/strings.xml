@@ -2,4 +2,11 @@
     <string name="app_name">Footprints</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="t_mobile">Mobile No.: +91 9924804780</string>
+    <string name="t_email">Email : tushar1710@gmail.com</string>
+    <string name="h_mobile">Mobile No.: +91 9724405343</string>
+    <string name="h_email">Email : kananiharsh007@gmail.com</string>
+    <string name="g_mobile">Mobile No.: +91 6352431899</string>
+    <string name="g_email">Email : gauravsorathiya85690@gmail.com</string>
+
 </resources>

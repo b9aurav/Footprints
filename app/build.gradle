@@ -50,5 +50,8 @@ dependencies {
     implementation 'com.github.developer-shivam:Diagonalify:1.1'
     implementation 'com.loopeer.lib:shadow:0.0.3'
     implementation 'com.jackandphantom.android:paletteshadowview:1.0.1'
-    implementation 'com.android.support:palette-v7:28.0.0'
+    //implementation 'com.android.support:palette-v7:28.0.0'
+
+    //Card View
+    implementation 'androidx.cardview:cardview:1.0.0'
 }

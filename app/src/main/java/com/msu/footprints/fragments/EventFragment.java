@@ -1,5 +1,6 @@
 package com.msu.footprints.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -17,6 +19,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.msu.footprints.EventDetails;
 import com.msu.footprints.R;
 import com.msu.footprints.models.Achievement;
 import com.msu.footprints.models.Event;
@@ -27,6 +30,7 @@ public class EventFragment extends Fragment {
     EventAdapter adapter;
     FirestoreRecyclerAdapter firestoreRecyclerAdapter;
     FirebaseFirestore firebaseFirestore;
+    Intent i;
 
     String ImageURL, Title, Summary, Description;
     Boolean Category;
@@ -54,9 +58,11 @@ public class EventFragment extends Fragment {
         Query query = firebaseFirestore.collection("Events");
         FirestoreRecyclerOptions<Event> options =
                 new FirestoreRecyclerOptions.Builder<Event>().setQuery(query, Event.class).build();
-        adapter = new EventAdapter(getContext(), options);
+        i = new Intent(view.getContext(), EventDetails.class);
+        adapter = new EventAdapter(getContext(), options, i);
         firestoreRecyclerAdapter = adapter;
         recyclerView.setAdapter(firestoreRecyclerAdapter);
+
     }
 
     @Override

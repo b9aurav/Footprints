@@ -10,10 +10,10 @@
     android:paddingEnd="5dp"
     android:paddingBottom="10dp"
     app:backgroundColor="@color/white"
-    app:cornerRadiusBR="0dp"
-    app:cornerRadiusTL="0dp"
+    app:cornerRadius="15dp"
     app:shadowColor="@color/orange_logo"
-    app:shadowMargin="15dp">
+    app:shadowMargin="15dp"
+    app:shadowRadius="15dp">
 
 
     <GridLayout
@@ -25,10 +25,10 @@
         android:layout_gravity="center_horizontal"
         android:columnOrderPreserved="false">
 
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            app:cardCornerRadius="12dp"
+            android:layout_height="100dp" app:cardCornerRadius="12dp"
             app:cardElevation="5dp"
             app:cardBackgroundColor="#1f4068"
             android:layout_margin="10dp"
@@ -40,15 +40,15 @@
                 android:orientation="vertical"
                 android:gravity="top">
 
-               <TextView
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:text="Tushar Gangani"
-                   android:textStyle="bold"
-                   android:textSize="20dp"
-                   android:textColor="@color/orange_logo"
-                   android:padding="10dp"
-                   ></TextView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tushar Gangani"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:textColor="@color/orange_logo"
+                    android:padding="10dp"
+                    ></TextView>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -158,8 +158,16 @@
                     android:textColor="@color/white"
                     ></TextView>
             </LinearLayout>
+
         </androidx.cardview.widget.CardView>
 
-    </GridLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="3"
+                android:src="@drawable/footprints"
+                android:scaleType="fitCenter"
+                ></ImageView>
 
+    </GridLayout>
 </com.loopeer.shadow.ShadowView>

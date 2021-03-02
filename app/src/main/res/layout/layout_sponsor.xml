@@ -9,25 +9,45 @@
     android:paddingTop="10dp"
     android:paddingEnd="5dp"
     android:paddingBottom="10dp"
-    app:backgroundColor="@color/gray"
-    app:cornerRadiusBR="20dp"
-    app:cornerRadiusTL="20dp"
+    app:backgroundColor="@color/off_purple"
+    app:cornerRadius="15dp"
     app:shadowColor="@color/orange_logo"
     app:shadowMargin="15dp"
-    app:shadowRadius="7dp">
+    app:shadowRadius="15dp">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="1"
+        android:layout_margin="5dp"
+        android:alignmentMode="alignMargins"
+        android:layout_gravity="center_horizontal"
+        android:columnOrderPreserved="false">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        app:cardCornerRadius="12dp"
+        app:cardElevation="5dp"
+        app:cardBackgroundColor="@color/white"
+        android:layout_margin="10dp"
+        android:clickable="true">
 
-        <ImageView
-            android:id="@+id/ivSponsor"
-            android:layout_width="wrap_content"
-            android:layout_height="150dp"
-            android:layout_gravity="center_horizontal"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="top">
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/ivSponsor"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    </GridLayout>
 
 </com.loopeer.shadow.ShadowView>

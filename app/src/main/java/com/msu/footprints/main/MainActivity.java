@@ -1,5 +1,6 @@
 package com.msu.footprints.main;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -24,6 +25,8 @@ import com.msu.footprints.fragments.AchievementFragment;
 import com.msu.footprints.fragments.ContactUs;
 import com.msu.footprints.fragments.EventFragment;
 import com.msu.footprints.fragments.SponsorsFragment;
+import com.msu.footprints.models.About;
+import com.msu.footprints.models.AboutUs;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -83,7 +86,9 @@ public class MainActivity extends AppCompatActivity{
                     getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new ContactUs()).commit();
                     break;
                 case R.id.mAbout:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new AboutUsFragment()).commit();
+                    Intent i = new Intent(this, AboutUs.class);
+                    startActivity(i);
+                    //getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new AboutUsFragment()).commit();
                     break;
                 default:
                     getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new EventFragment()).commit();
@@ -116,8 +121,14 @@ public class MainActivity extends AppCompatActivity{
     private void changeAppTheme(boolean isChecked){
         if (isChecked) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            Intent i = getIntent();
+            finish();
+            startActivity(i);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            Intent i = getIntent();
+            finish();
+            startActivity(i);
         }
 //        editor.putBoolean("DarkMode", !isChecked).apply();
     }
