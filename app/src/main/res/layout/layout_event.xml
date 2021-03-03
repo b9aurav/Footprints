@@ -26,8 +26,9 @@
         android:columnOrderPreserved="false">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/event_card"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="wrap_content"
             app:cardCornerRadius="12dp"
             app:cardElevation="5dp"
             app:cardBackgroundColor="#1f4068"
@@ -62,9 +63,21 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:text="Title"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:textColor="@color/orange_logo"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/tvSummary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Summary"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
                     android:fontFamily="@string/common_google_play_services_wear_update_text"
                     android:textColor="@color/white"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
         <!--        <com.jackandphantom.paletteshadowview.PaletteShadowView-->
         <!--            android:id="@+id/banner"-->

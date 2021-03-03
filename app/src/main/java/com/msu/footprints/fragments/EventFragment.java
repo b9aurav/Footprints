@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.msu.footprints.main.EventDetailsActivity;
 import com.msu.footprints.R;
+import com.msu.footprints.main.MainActivity;
 import com.msu.footprints.models.Event;
 
 public class EventFragment extends Fragment {
@@ -27,6 +29,12 @@ public class EventFragment extends Fragment {
     EventAdapter adapter;
     FirestoreRecyclerAdapter firestoreRecyclerAdapter;
     FirebaseFirestore firebaseFirestore;
+
+    //Loading Dialog
+    public static AlertDialog loading;
+    AlertDialog.Builder ab;
+    LayoutInflater layoutInflater;
+    View view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,19 +50,34 @@ public class EventFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        MainActivity.toolbar.setTitle("Events");
+
+        //Loading Dialog Initialization
+        layoutInflater = LayoutInflater.from(getContext());
+        this.view = layoutInflater.inflate(R.layout.loading_dialog, null);
+        ab = new AlertDialog.Builder(getContext());
+        ab.setView(this.view);
+        loading = ab.create();
+        loading.setCancelable(false);
+        loading.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+//        loading.show();
+
+
         //Recycler View Initialization
         recyclerView = view.findViewById(R.id.events_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //Getting data fromFirestore
         firebaseFirestore = FirebaseFirestore.getInstance();
-        Query query = firebaseFirestore.collection("Events");
+        Query query = firebaseFirestore.collection("Events").orderBy("Priority");
+
         FirestoreRecyclerOptions<Event> options =
                 new FirestoreRecyclerOptions.Builder<Event>().setQuery(query, Event.class).build();
         adapter = new EventAdapter(getContext(), options);
         firestoreRecyclerAdapter = adapter;
-        recyclerView.setAdapter(firestoreRecyclerAdapter);
 
+        recyclerView.setAdapter(firestoreRecyclerAdapter);
     }
 
     @Override

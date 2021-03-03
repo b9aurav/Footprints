@@ -6,8 +6,8 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/mHome"
-            android:title="Home"
-            android:icon="@drawable/ic_home"/>
+            android:title="Events"
+            android:icon="@drawable/ic_event"/>
         <item
             android:id="@+id/mAchievements"
             android:title="Achievements"

@@ -30,7 +30,7 @@ import com.msu.footprints.models.AboutUs;
 
 public class MainActivity extends AppCompatActivity{
 
-    Toolbar toolbar;
+    public static Toolbar toolbar;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity{
 
         drawerLayout = findViewById(R.id.drawerLayout);
         toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Events");
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);

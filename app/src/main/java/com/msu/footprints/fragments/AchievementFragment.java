@@ -16,6 +16,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.msu.footprints.R;
+import com.msu.footprints.main.MainActivity;
 import com.msu.footprints.models.Achievement;
 
 public class AchievementFragment extends Fragment{
@@ -39,6 +40,8 @@ public class AchievementFragment extends Fragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
+
+        MainActivity.toolbar.setTitle("Achievements");
 
         recyclerView = view.findViewById(R.id.achievements_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

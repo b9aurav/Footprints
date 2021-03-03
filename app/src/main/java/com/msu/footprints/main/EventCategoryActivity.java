@@ -58,7 +58,7 @@ public class EventCategoryActivity extends AppCompatActivity{
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        Query query = firebaseFirestore.collection(path + "/" + title);
+        Query query = firebaseFirestore.collection(path + "/" + title).orderBy("Priority");
         FirestoreRecyclerOptions<Event> options =
                 new FirestoreRecyclerOptions.Builder<Event>().setQuery(query, Event.class).build();
         adapter = new EventAdapter(EventCategoryActivity.this, options);

@@ -18,6 +18,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.msu.footprints.R;
+import com.msu.footprints.main.MainActivity;
 import com.msu.footprints.models.Achievement;
 import com.msu.footprints.models.Sponsor;
 
@@ -41,6 +42,8 @@ public class SponsorsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        MainActivity.toolbar.setTitle("Sponsors");
 
         recyclerView = view.findViewById(R.id.sponsor_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

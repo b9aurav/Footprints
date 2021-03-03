@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/mReport"
-        android:icon="@drawable/ic_report_bug"
+        android:icon="@drawable/ic_bug_report"
         android:title="Report"
         app:showAsAction="always" />
 </menu>

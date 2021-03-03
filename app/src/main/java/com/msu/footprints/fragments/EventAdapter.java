@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -41,11 +42,12 @@ public class EventAdapter extends FirestoreRecyclerAdapter<Event, EventAdapter.V
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Event model){
 
         holder.title.setText(model.getTitle());
+        holder.summary.setText(model.getSummary());
         Glide.with(holder.context)
                 .load(model.getImageURL())
                 .into(holder.banner);
 
-        holder.banner.setOnClickListener(v -> {
+        holder.event_card.setOnClickListener(v -> {
             String path = this.getSnapshots().getSnapshot(position).getReference().getPath();
             Intent intent;
             if (model.isCategory()) {
@@ -58,12 +60,15 @@ public class EventAdapter extends FirestoreRecyclerAdapter<Event, EventAdapter.V
             context.startActivity(intent);
 
         });
+
+//        EventFragment.loading.dismiss();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public ImageView banner;
         public TextView title;
-        //public TextView summary;
+        public TextView summary;
+        public CardView event_card;
         //public TextView description;
         public Context context;
 
@@ -71,7 +76,8 @@ public class EventAdapter extends FirestoreRecyclerAdapter<Event, EventAdapter.V
             super(itemview);
             this.banner = (ImageView) itemView.findViewById(R.id.ivEvent);
             this.title = (TextView) itemView.findViewById(R.id.tvTitle);
-//            this.summary = (TextView) itemView.findViewById(R.id.tvSummary);
+            this.summary = (TextView) itemView.findViewById(R.id.tvSummary);
+            this.event_card = (CardView) itemView.findViewById(R.id.event_card);
 //            this.description = (TextView) itemView.findViewById(R.id.tvDescription);
             this.context = itemview.getContext();
         }
