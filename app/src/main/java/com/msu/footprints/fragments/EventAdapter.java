@@ -14,19 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.msu.footprints.EventDetails;
 import com.msu.footprints.R;
+import com.msu.footprints.main.EventCategoryActivity;
+import com.msu.footprints.main.EventDetailsActivity;
 import com.msu.footprints.models.Event;
 
 public class EventAdapter extends FirestoreRecyclerAdapter<Event, EventAdapter.ViewHolder>{
 
     private Context context;
-    Intent i;
 
-    public EventAdapter(Context context, @NonNull FirestoreRecyclerOptions<Event> options, Intent i){
+    public EventAdapter(Context context, FirestoreRecyclerOptions<Event> options){
         super(options);
         this.context = context;
-        this.i = i;
     }
 
     @NonNull
@@ -40,18 +39,24 @@ public class EventAdapter extends FirestoreRecyclerAdapter<Event, EventAdapter.V
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Event model){
+
         holder.title.setText(model.getTitle());
         Glide.with(holder.context)
                 .load(model.getImageURL())
                 .into(holder.banner);
 
-        holder.banner.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v){
-                Intent in = new Intent(context,EventDetails.class);
-//                i.putExtra("title", summary);
-//                i.putExtra("description", desc);
-                context.startActivity(in);
+        holder.banner.setOnClickListener(v -> {
+            String path = this.getSnapshots().getSnapshot(position).getReference().getPath();
+            Intent intent;
+            if (model.isCategory()) {
+                intent = new Intent(context, EventCategoryActivity.class);
+            } else {
+                intent = new Intent(context, EventDetailsActivity.class);
             }
+            intent.putExtra("Path", path);
+            intent.putExtra("Title", model.getTitle());
+            context.startActivity(intent);
+
         });
     }
 

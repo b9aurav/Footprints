@@ -12,8 +12,9 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.Footprints">
-        <activity android:name=".models.AboutUs"></activity>
-        <activity android:name=".EventDetails" />
+        <activity android:name=".main.EventCategoryActivity"></activity>
+        <activity android:name=".models.AboutUs" />
+        <activity android:name=".main.EventDetailsActivity" />
         <activity
             android:name=".main.SplashActivity"
             android:screenOrientation="portrait">

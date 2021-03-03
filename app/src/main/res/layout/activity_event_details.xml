@@ -1,55 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/off_purple"
-    tools:context=".EventDetails"
     android:orientation="vertical"
-    >
+    tools:context=".main.EventDetailsActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_marginBottom="56dp"
         android:orientation="vertical">
+
         <TextView
-            android:id="@+id/TVTitle"
-            android:background="@color/off_purple"
+            android:id="@+id/tvProblem"
+            style="@style/styleTitleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Problem Statement" />
+
+        <TextView
+            android:id="@+id/tvDescription"
+            style="@style/styleDescriptionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvRule"
+            style="@style/styleTitleTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="top"
-            android:text="Title"
-            android:fontFamily="@string/common_google_play_services_wear_update_text"
-            android:textColor="@color/orange_logo"
-            android:textSize="30dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            tools:ignore="MissingConstraints" />
+            android:text="Rules" />
 
         <TextView
-            tools:ignore="HardcodedText"
-            android:layout_weight="3"
-            android:id="@+id/TVDescription"
+            android:id="@+id/tvRuleDescription"
+            style="@style/styleDescriptionTextView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="sans-serif"
-            android:background="@color/off_purple"
-            android:paddingRight="15dp"
-            android:paddingLeft="15dp"
-            android:textColor="@color/white"
-            android:text="The log say mContext is kind of FilePickerDelegate. So check your Adapter init function. I think you pass context as , but reference to FilePickerDelegate. So change it to YourActivity.this ( with activity) or getActivity( in fragment)"
-            android:textSize="15dp" />
+            android:layout_height="wrap_content" />
 
-        <com.google.android.material.button.MaterialButton
+        <TextView
+            android:id="@+id/tvRound"
+            style="@style/styleTitleTextView"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Register"
-            ></com.google.android.material.button.MaterialButton>
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:text="Rounds" />
+
+        <TextView
+            android:id="@+id/tvRoundDescription"
+            style="@style/styleDescriptionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvInstruction"
+            style="@style/styleTitleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:text="Instructions"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvInstructionDescription"
+            style="@style/styleDescriptionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvGenInstruction"
+            style="@style/styleTitleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:text="General Instructions"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvGenInstructionDescription"
+            style="@style/styleDescriptionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvCriteria"
+            style="@style/styleTitleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:text="Judging Criteria"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvCriteriaDescription"
+            style="@style/styleDescriptionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvProvide"
+            style="@style/styleTitleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:text="What We Provide"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvProvideDescription"
+            style="@style/styleDescriptionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvSpecification"
+            style="@style/styleTitleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:text="Specifications"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvSpecificationDescription"
+            style="@style/styleDescriptionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvAbstract"
+            style="@style/styleTitleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:text="Abstract"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvAbstractDescription"
+            style="@style/styleDescriptionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvPresentation"
+            style="@style/styleTitleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:text="Presentation Details"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvPresentationDescription"
+            style="@style/styleDescriptionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvFee"
+            style="@style/styleTitleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:text="Fees" />
+
+        <TextView
+            android:id="@+id/tvFeeDescription"
+            style="@style/styleDescriptionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvTeamSize"
+            style="@style/styleTitleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:text="Team Size" />
+
+        <TextView
+            android:id="@+id/tvTeamSizeDescription"
+            style="@style/styleDescriptionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Register" />
+</RelativeLayout>

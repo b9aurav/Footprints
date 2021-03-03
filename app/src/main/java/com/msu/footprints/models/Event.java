@@ -3,8 +3,9 @@ package com.msu.footprints.models;
 import java.io.Serializable;
 
 public class Event implements Serializable{
+    private String documentId;
     private String Title, Description, Summary, Rules, Rounds;
-    private String Provide, Instruction, GenInstruction, Criteria, Specification;
+    private String Provide, Instruction, GenInstruction, Criteria, Specification, Presentation, Abstract;
     private String Fees, RegisterLink, ImageURL, TeamSize;
     private boolean Category, RuleRound;
 
@@ -144,5 +145,29 @@ public class Event implements Serializable{
 
     public void setRuleRound(boolean ruleRound){
         RuleRound = ruleRound;
+    }
+
+    public String getDocumentId(){
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId){
+        this.documentId = documentId;
+    }
+
+    public String getPresentation(){
+        return Presentation;
+    }
+
+    public void setPresentation(String presentation){
+        Presentation = presentation;
+    }
+
+    public String getAbstract(){
+        return Abstract;
+    }
+
+    public void setAbstract(String anAbstract){
+        Abstract = anAbstract;
     }
 }
