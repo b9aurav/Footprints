@@ -16,15 +16,6 @@
     app:shadowMargin="15dp"
     app:shadowRadius="7dp">
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:columnCount="2"
-        android:layout_margin="5dp"
-        android:alignmentMode="alignMargins"
-        android:layout_gravity="center_horizontal"
-        android:columnOrderPreserved="false">
-
         <androidx.cardview.widget.CardView
             android:id="@+id/event_card"
             android:layout_width="match_parent"
@@ -109,7 +100,4 @@
 <!--                    android:textSize="15dp" />-->
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-    </GridLayout>
-
-
 </ScrollView>
