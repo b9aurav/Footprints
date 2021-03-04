@@ -22,8 +22,8 @@ public class EventDetailsActivity extends AppCompatActivity{
 
     TextView tvProblem, tvDescription, tvRule, tvRound;
     TextView tvRuleDes, tvRoundDes;
-    TextView tvSpecification, tvAbstract, tvPresentation, tvGenInstruction, tvInstruction, tvCriteria, tvProvide;
-    TextView tvSpecificationDes, tvAbstractDes, tvPresentationDes, tvGenInstructionDes, tvInstructionDes, tvCriteriaDes, tvProvideDes;
+    TextView tvSpecification, tvAbstract, tvPresentation, tvGenInstruction, tvInstruction, tvCriteria, tvProvide, tvSubmission, tvRequirements;
+    TextView tvSpecificationDes, tvAbstractDes, tvPresentationDes, tvGenInstructionDes, tvInstructionDes, tvCriteriaDes, tvProvideDes, tvSubmissionDes, tvRequirementsDes;
     TextView tvFee, tvTeamSize, tvFeeDes, tvTeamSizeDes;
 
     AwesomeBar toolbar;
@@ -74,67 +74,89 @@ public class EventDetailsActivity extends AppCompatActivity{
                 event.setCriteria(document.getString("Criteria"));
                 event.setProvide(document.getString("Provide"));
                 event.setPresentation(document.getString("Presentation"));
+                event.setSubmission(document.getString("Submission"));
+                event.setRequirements(document.getString("Requirements"));
 
-                tvDescription.setText(event.getDescription());
-                if (event.getFees() != null)
+                tvDescription.setText(event.getDescription().replace("\\n", "\n"));
+                if (event.getFees() != null) {
                     tvFeeDes.setText(event.getFees());
-                else {
-                    tvFeeDes.setVisibility(View.GONE);
-                    tvFee.setVisibility(View.GONE);
+                    tvFee.setVisibility(View.VISIBLE);
+                    tvFeeDes.setVisibility(View.VISIBLE);
                 }
 
-                if (event.getTeamSize() != null)
+                if (event.getTeamSize() != null) {
                     tvTeamSizeDes.setText(event.getTeamSize());
-                else {
-                    tvTeamSize.setVisibility(View.GONE);
-                    tvTeamSizeDes.setVisibility(View.GONE);
+                    tvTeamSize.setVisibility(View.VISIBLE);
+                    tvTeamSizeDes.setVisibility(View.VISIBLE);
                 }
 
                 if (event.isRuleRound()) {
                     tvRule.setText("Rules for Round 1");
                     tvRound.setText("Rules for Round 2");
                 }
-                if (event.getRules() != null)
-                    tvRuleDes.setText(document.getString("Rules"));
-                else {
-                    tvRule.setVisibility(View.GONE);
-                    tvRuleDes.setVisibility(View.GONE);
+                if (event.getRules() != null) {
+                    tvRuleDes.setText(event.getRules().replace("\\n", "\n"));
+                    tvRule.setVisibility(View.VISIBLE);
+                    tvRuleDes.setVisibility(View.VISIBLE);
                 }
-                if (event.getRounds() != null)
-                    tvRoundDes.setText(document.getString("Rounds"));
-                else {
-                    tvRound.setVisibility(View.GONE);
-                    tvRoundDes.setVisibility(View.GONE);
+                if (event.getRounds() != null) {
+                    tvRoundDes.setText(event.getRounds().replace("\\n", "\n"));
+                    tvRound.setVisibility(View.VISIBLE);
+                    tvRoundDes.setVisibility(View.VISIBLE);
                 }
 
-                if (event.getSpecification() != null){
-                    tvSpecificationDes.setText(event.getSpecification());
+                if (event.getSpecification() != null) {
+                    tvSpecificationDes.setText(event.getSpecification().replace("\\n", "\n"));
                     tvSpecification.setVisibility(View.VISIBLE);
                     tvSpecificationDes.setVisibility(View.VISIBLE);
                 }
 
-                if (event.getInstruction() != null){
-                    tvInstructionDes.setText(event.getInstruction());
+                if (event.getInstruction() != null) {
+                    tvInstructionDes.setText(event.getInstruction().replace("\\n", "\n"));
                     tvInstruction.setVisibility(View.VISIBLE);
                     tvInstructionDes.setVisibility(View.VISIBLE);
                 }
 
-                if (event.getGenInstruction() != null){
-                    tvGenInstructionDes.setText(event.getGenInstruction());
+                if (event.getGenInstruction() != null) {
+                    tvGenInstructionDes.setText(event.getGenInstruction().replace("\\n", "\n"));
                     tvGenInstruction.setVisibility(View.VISIBLE);
                     tvGenInstructionDes.setVisibility(View.VISIBLE);
                 }
 
-                if (event.getCriteria() != null){
-                    tvCriteriaDes.setText(event.getCriteria());
+                if (event.getCriteria() != null) {
+                    tvCriteriaDes.setText(event.getCriteria().replace("\\n", "\n"));
                     tvCriteriaDes.setVisibility(View.VISIBLE);
                     tvCriteria.setVisibility(View.VISIBLE);
                 }
 
-                if (event.getAbstract() != null){
-                    tvAbstractDes.setText(event.getAbstract());
+                if (event.getAbstract() != null) {
+                    tvAbstractDes.setText(event.getAbstract().replace("\\n", "\n"));
                     tvAbstractDes.setVisibility(View.VISIBLE);
                     tvAbstract.setVisibility(View.VISIBLE);
+                }
+
+                if (event.getSubmission() != null) {
+                    tvSubmissionDes.setText(event.getSubmission().replace("\\n", "\n"));
+                    tvSubmissionDes.setVisibility(View.VISIBLE);
+                    tvSubmission.setVisibility(View.VISIBLE);
+                }
+
+                if (event.getProvide() != null) {
+                    tvProvideDes.setText(event.getProvide().replace("\\n", "\n"));
+                    tvProvide.setVisibility(View.VISIBLE);
+                    tvProvideDes.setVisibility(View.VISIBLE);
+                }
+
+                if (event.getRequirements() != null) {
+                    tvRequirementsDes.setText(event.getRequirements().replace("\\n", "\n"));
+                    tvRequirements.setVisibility(View.VISIBLE);
+                    tvRequirementsDes.setVisibility(View.VISIBLE);
+                }
+
+                if (event.getPresentation() != null) {
+                    tvPresentationDes.setText(event.getPresentation().replace("\\n", "\n"));
+                    tvPresentation.setVisibility(View.VISIBLE);
+                    tvPresentationDes.setVisibility(View.VISIBLE);
                 }
 
             } else {
@@ -162,6 +184,8 @@ public class EventDetailsActivity extends AppCompatActivity{
         tvInstruction = findViewById(R.id.tvInstruction);
         tvCriteria = findViewById(R.id.tvCriteria);
         tvProvide = findViewById(R.id.tvProvide);
+        tvSubmission = findViewById(R.id.tvSubmission);
+        tvRequirements = findViewById(R.id.tvRequirements);
 
         tvSpecificationDes = findViewById(R.id.tvSpecificationDescription);
         tvAbstractDes = findViewById(R.id.tvAbstractDescription);
@@ -170,6 +194,8 @@ public class EventDetailsActivity extends AppCompatActivity{
         tvInstructionDes = findViewById(R.id.tvInstructionDescription);
         tvCriteriaDes = findViewById(R.id.tvCriteriaDescription);
         tvProvideDes = findViewById(R.id.tvProvideDescription);
+        tvSubmissionDes = findViewById(R.id.tvSubmissionDescription);
+        tvRequirementsDes = findViewById(R.id.tvRequirementsDescription);
 
         tvFee = findViewById(R.id.tvFee);
         tvTeamSize = findViewById(R.id.tvTeamSize);

@@ -15,201 +15,242 @@
         android:layout_alignParentTop="true" />
 
     <ScrollView
-        android:layout_below="@id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
-        android:layout_marginBottom="56dp"
-        android:orientation="vertical">
+        android:layout_marginBottom="56dp">
 
-        <TextView
-            android:id="@+id/tvProblem"
-            style="@style/styleTitleTextView"
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Problem Statement" />
+            android:layout_below="@id/toolbar"
+            android:layout_marginBottom="56dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvDescription"
-            style="@style/styleDescriptionTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tvProblem"
+                style="@style/styleTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Problem Statement" />
 
-        <TextView
-            android:id="@+id/tvRule"
-            style="@style/styleTitleTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:text="Rules" />
+            <TextView
+                android:id="@+id/tvDescription"
+                style="@style/styleDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/tvRuleDescription"
-            style="@style/styleDescriptionTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tvRule"
+                style="@style/styleTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="Rules"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvRound"
-            style="@style/styleTitleTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:text="Rounds" />
+            <TextView
+                android:id="@+id/tvRuleDescription"
+                style="@style/styleDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvRoundDescription"
-            style="@style/styleDescriptionTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tvRound"
+                style="@style/styleTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="Rounds"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvInstruction"
-            style="@style/styleTitleTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:text="Instructions"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/tvRoundDescription"
+                style="@style/styleDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvInstructionDescription"
-            style="@style/styleDescriptionTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/tvInstruction"
+                style="@style/styleTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="Instructions"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvGenInstruction"
-            style="@style/styleTitleTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:text="General Instructions"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/tvInstructionDescription"
+                style="@style/styleDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvGenInstructionDescription"
-            style="@style/styleDescriptionTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/tvGenInstruction"
+                style="@style/styleTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="General Instructions"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvCriteria"
-            style="@style/styleTitleTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:text="Judging Criteria"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/tvGenInstructionDescription"
+                style="@style/styleDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvCriteriaDescription"
-            style="@style/styleDescriptionTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/tvCriteria"
+                style="@style/styleTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="Judging Criteria"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvProvide"
-            style="@style/styleTitleTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:text="What We Provide"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/tvCriteriaDescription"
+                style="@style/styleDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvProvideDescription"
-            style="@style/styleDescriptionTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/tvProvide"
+                style="@style/styleTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="What We Provide"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvSpecification"
-            style="@style/styleTitleTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:text="Specifications"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/tvProvideDescription"
+                style="@style/styleDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvSpecificationDescription"
-            style="@style/styleDescriptionTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/tvSpecification"
+                style="@style/styleTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="Specifications"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvAbstract"
-            style="@style/styleTitleTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:text="Abstract"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/tvSpecificationDescription"
+                style="@style/styleDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvAbstractDescription"
-            style="@style/styleDescriptionTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/tvAbstract"
+                style="@style/styleTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="Abstract"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvPresentation"
-            style="@style/styleTitleTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:text="Presentation Details"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/tvAbstractDescription"
+                style="@style/styleDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvPresentationDescription"
-            style="@style/styleDescriptionTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/tvPresentation"
+                style="@style/styleTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="Presentation Details"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvFee"
-            style="@style/styleTitleTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:text="Fees" />
+            <TextView
+                android:id="@+id/tvPresentationDescription"
+                style="@style/styleDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvFeeDescription"
-            style="@style/styleDescriptionTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tvSubmission"
+                style="@style/styleTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="Details of Submission"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvTeamSize"
-            style="@style/styleTitleTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:text="Team Size" />
+            <TextView
+                android:id="@+id/tvSubmissionDescription"
+                style="@style/styleDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tvTeamSizeDescription"
-            style="@style/styleDescriptionTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tvRequirements"
+                style="@style/styleTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="Requirements"
+                android:visibility="gone" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tvRequirementsDescription"
+                style="@style/styleDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvFee"
+                style="@style/styleTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="Fees"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvFeeDescription"
+                style="@style/styleDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvTeamSize"
+                style="@style/styleTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="Team Size"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvTeamSizeDescription"
+                style="@style/styleDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+        </LinearLayout>
     </ScrollView>
-
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
