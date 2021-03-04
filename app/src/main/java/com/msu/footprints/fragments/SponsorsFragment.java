@@ -43,7 +43,7 @@ public class SponsorsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        MainActivity.toolbar.setTitle("Sponsors");
+        MainActivity.titles.setText("Sponsors");
 
         recyclerView = view.findViewById(R.id.sponsor_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

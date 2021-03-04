@@ -3,6 +3,7 @@ package com.msu.footprints.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.github.florent37.awesomebar.AwesomeBar;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.msu.footprints.R;
@@ -24,7 +26,8 @@ public class EventCategoryActivity extends AppCompatActivity{
     EventAdapter adapter;
     FirestoreRecyclerAdapter firestoreRecyclerAdapter;
     FirebaseFirestore firebaseFirestore;
-    Toolbar toolbar;
+    AwesomeBar toolbar;
+    TextView titles;
     String path, title;
 
     @Override
@@ -46,15 +49,15 @@ public class EventCategoryActivity extends AppCompatActivity{
         title = intent.getStringExtra("Title");
 
         toolbar = findViewById(R.id.toolbar);
+        titles = findViewById(R.id.titles);
         recyclerView = findViewById(R.id.recyclerview);
 
-        toolbar.setTitle(title);
+        titles.setText(title);
         firebaseFirestore = FirebaseFirestore.getInstance();
-        toolbar.setTitle(title);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        titles.setText(title);
+        toolbar.displayHomeAsUpEnabled(true);
 
+        toolbar.setOnMenuClickedListener(v -> onBackPressed());
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 

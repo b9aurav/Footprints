@@ -50,7 +50,7 @@ public class EventFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        MainActivity.toolbar.setTitle("Events");
+        MainActivity.titles.setText("Events");
 
         //Loading Dialog Initialization
         layoutInflater = LayoutInflater.from(getContext());

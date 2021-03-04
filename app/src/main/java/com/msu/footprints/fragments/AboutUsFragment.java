@@ -41,7 +41,7 @@ public class AboutUsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        MainActivity.toolbar.setTitle("About Us");
+        MainActivity.titles.setText("About Us");
 
         //Initializing RecyclerView
         recyclerView = view.findViewById(R.id.about_rv);

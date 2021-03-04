@@ -10,7 +10,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 
+import com.github.florent37.awesomebar.AwesomeBar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.msu.footprints.R;
@@ -24,7 +26,8 @@ public class EventDetailsActivity extends AppCompatActivity{
     TextView tvSpecificationDes, tvAbstractDes, tvPresentationDes, tvGenInstructionDes, tvInstructionDes, tvCriteriaDes, tvProvideDes;
     TextView tvFee, tvTeamSize, tvFeeDes, tvTeamSizeDes;
 
-    Toolbar toolbar;
+    AwesomeBar toolbar;
+    TextView titles;
     FirebaseFirestore firebaseFirestore;
     String path, title;
     Event event;
@@ -175,10 +178,15 @@ public class EventDetailsActivity extends AppCompatActivity{
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(title);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        titles = findViewById(R.id.titles);
+        titles.setText(title);
+        toolbar.displayHomeAsUpEnabled(true);
+
+        toolbar.setOnMenuClickedListener(v -> onBackPressed());
+
+
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         event = new Event();
     }

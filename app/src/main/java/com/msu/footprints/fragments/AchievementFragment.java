@@ -41,7 +41,7 @@ public class AchievementFragment extends Fragment{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
-        MainActivity.toolbar.setTitle("Achievements");
+        MainActivity.titles.setText("Achievements");
 
         recyclerView = view.findViewById(R.id.achievements_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

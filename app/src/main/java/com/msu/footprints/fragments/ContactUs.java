@@ -43,7 +43,7 @@ public class ContactUs extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        MainActivity.toolbar.setTitle("Contact Us");
+        MainActivity.titles.setText("Contact Us");
 
         //Initializing RecyclerView
         contactus_rv = view.findViewById(R.id.contact_rv);

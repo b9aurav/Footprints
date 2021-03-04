@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.florent37.awesomebar.AwesomeBar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:elevation="4dp"
+    app:bar_animatedIcons="true"
+    app:bar_primaryDarkColor="@color/white"
+    app:bar_primaryColor="@color/orange_logo">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/titles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/orange_logo"
+            android:gravity="start"
+            android:layout_marginStart="130dp"
+            android:text="Events"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-smallcaps"/>
+
+    </LinearLayout>
+
+</com.github.florent37.awesomebar.AwesomeBar>

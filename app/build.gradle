@@ -51,6 +51,7 @@ dependencies {
     implementation 'com.loopeer.lib:shadow:0.0.3'
     implementation 'com.jackandphantom.android:paletteshadowview:1.0.1'
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    implementation 'com.github.florent37:awesomebar:1.0.3'
     //implementation 'com.android.support:palette-v7:28.0.0'
 
     //Card View
