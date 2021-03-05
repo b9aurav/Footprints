@@ -36,13 +36,40 @@
                 android:layout_margin="7dp"
                 android:gravity="top">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/orange_logo"
+                    android:textSize="16dp"
+                    android:text="Name : "/>
+
                 <TextView
                     android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/orange_logo"
-                    android:textSize="20dp"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
                     android:text="Name"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/orange_logo"
+                    android:textSize="16dp"
+                    android:text="Email : "/>
 
                 <TextView
                     android:id="@+id/tvEmail"
@@ -50,17 +77,32 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/white"
-                    android:textSize="16dp"
-                    android:text="Email : "/>
+                    android:textSize="16dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contact No : "
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/orange_logo"
+                    android:textSize="16dp"/>
 
                 <TextView
                     android:id="@+id/tvMob"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Contact No : "
                     android:layout_marginTop="10dp"
                     android:textColor="@color/white"
                     android:textSize="16dp"/>
+
+            </LinearLayout>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

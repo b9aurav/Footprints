@@ -16,6 +16,10 @@
             android:id="@+id/mSponsor"
             android:title="Sponsors"
             android:icon="@drawable/ic_sponsor"/>
+<!--        <item-->
+<!--            android:id="@+id/mShare"-->
+<!--            android:title="Share"-->
+<!--            android:icon="@drawable/ic_share"/>-->
     </group>
     <item android:title="Communicate">
         <menu>

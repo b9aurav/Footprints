@@ -50,7 +50,7 @@ public class AchievementAdapter extends FirestoreRecyclerAdapter<Achievement, Ac
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Achievement model){
         holder.title.setText(model.getTitle());
-        holder.year.setText(holder.year.getText() + model.getYear());
+        holder.year.setText(model.getYear());
         holder.description.setText(model.getDescription());
         Glide.with(holder.context)
                 .load(model.getImageURL())

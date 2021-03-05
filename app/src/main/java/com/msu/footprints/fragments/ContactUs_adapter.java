@@ -50,9 +50,9 @@ public class ContactUs_adapter extends FirestoreRecyclerAdapter<Contact, Contact
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Contact model) {
-        holder.address.setText(holder.address.getText() + model.getAddress());
-        holder.email.setText(holder.email.getText() + model.getEmail());
-        holder.mob.setText(holder.mob.getText() + model.getMob());
+        holder.address.setText(model.getAddress());
+        holder.email.setText(model.getEmail());
+        holder.mob.setText(model.getMob());
         Glide.with(holder.context)
                 .load(model.getImageURL())
                 .into(holder.contact);

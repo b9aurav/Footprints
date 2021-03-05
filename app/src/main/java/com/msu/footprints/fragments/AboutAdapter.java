@@ -49,8 +49,8 @@ public class AboutAdapter extends FirestoreRecyclerAdapter<About, AboutAdapter.V
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull About model) {
         holder.name.setText(model.getName());
-        holder.email.setText(holder.email.getText() + model.getEmail());
-        holder.mob.setText(holder.mob.getText() + model.getMob());
+        holder.email.setText(model.getEmail());
+        holder.mob.setText(model.getMob());
     }
 
     private void setScaleAnimation(View view) {
