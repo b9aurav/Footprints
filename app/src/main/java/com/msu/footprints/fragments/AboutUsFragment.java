@@ -12,20 +12,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.msu.footprints.R;
 import com.msu.footprints.main.MainActivity;
 import com.msu.footprints.models.About;
+import com.msu.footprints.models.Achievement;
 
 public class AboutUsFragment extends Fragment {
 
     RecyclerView recyclerView;
     AboutAdapter adapter;
-    About[] abouts_data;
 
+    FirestoreRecyclerAdapter firestoreRecyclerAdapter;
     FirebaseFirestore firebaseFirestore;
-    String Name, Email;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,29 +50,26 @@ public class AboutUsFragment extends Fragment {
         recyclerView = view.findViewById(R.id.about_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+
         //Getting data fromFirestore
         firebaseFirestore = FirebaseFirestore.getInstance();
-        firebaseFirestore.collection("About").get().addOnCompleteListener(task -> {
-            if(task.isSuccessful()) {
-                int i = 0;
-                int len = 0;
-                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                    len++;
-                }
-                abouts_data = new About[len];
-                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                    About about;
-                    Name = documentSnapshot.getString("Name");
-                    Email = documentSnapshot.getString("Email");
-                    about = new About(Name,Email);
-                    abouts_data[i] = about;
-                    i++;
-                }
+        Query query = firebaseFirestore.collection("About").orderBy("Priority");
+        FirestoreRecyclerOptions<About> options =
+                new FirestoreRecyclerOptions.Builder<About>().setQuery(query, About.class).build();
+        adapter = new AboutAdapter(getContext(), options);
+        firestoreRecyclerAdapter = adapter;
+        recyclerView.setAdapter(firestoreRecyclerAdapter);
+    }
 
-                //Setting Adapter in Recyclerview
-                adapter = new AboutAdapter(abouts_data);
-                recyclerView.setAdapter(adapter);
-            }
-        });
+    @Override
+    public void onStart(){
+        super.onStart();
+        firestoreRecyclerAdapter.startListening();
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        firestoreRecyclerAdapter.stopListening();
     }
 }

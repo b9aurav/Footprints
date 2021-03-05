@@ -1,35 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.loopeer.shadow.ShadowView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="10dp"
     android:foreground="?attr/selectableItemBackground"
-    android:paddingStart="5dp"
-    android:paddingTop="10dp"
-    android:paddingEnd="5dp"
-    android:paddingBottom="10dp"
-    app:backgroundColor="@color/off_purple"
-    app:cornerRadius="15dp"
+    app:backgroundColor="@color/gray"
     app:shadowColor="@color/orange_logo"
     app:shadowMargin="15dp"
-    app:shadowRadius="15dp">
+    app:shadowRadius="7dp">
+
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:columnCount="1"
-        android:layout_margin="5dp"
         android:alignmentMode="alignMargins"
         android:layout_gravity="center_horizontal"
         android:columnOrderPreserved="false">
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/achievement_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="12dp"
+        app:cardCornerRadius="5dp"
         app:cardElevation="5dp"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="@color/off_purple"
         android:layout_margin="10dp"
         android:clickable="true">
 
@@ -37,31 +33,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/off_purple"
-        android:gravity="top">
+        android:gravity="top"
+        android:layout_margin="7dp">
 
         <ImageView
             android:id="@+id/ivAchievement"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:src="@drawable/image_drawer_header"
-            android:padding="10dp"/>
+            android:scaleType="fitCenter"
+            android:src="@drawable/image_drawer_header" />
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Title"
-            android:padding="10dp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
             android:textSize="20dp"
-            android:textColor="@color/white"/>
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textColor="@color/orange_logo"/>
 
         <TextView
             android:id="@+id/tvYear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Year"
-            android:paddingLeft="10dp"
+            android:text="Year : "
+            android:layout_marginTop="5dp"
             android:textColor="@color/white"/>
 
         <TextView
@@ -69,10 +68,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description"
-            android:paddingLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:textColor="@color/white"/>
 
     </LinearLayout>
     </androidx.cardview.widget.CardView>
     </GridLayout>
-</com.loopeer.shadow.ShadowView>
+</ScrollView>

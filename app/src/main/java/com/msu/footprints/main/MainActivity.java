@@ -3,6 +3,7 @@ package com.msu.footprints.main;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
@@ -103,9 +104,9 @@ public class MainActivity extends AppCompatActivity{
                     getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new ContactUs()).commit();
                     break;
                 case R.id.mAbout:
-                    Intent i = new Intent(this, AboutUs.class);
-                    startActivity(i);
-                    //getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new AboutUsFragment()).commit();
+//                    Intent i = new Intent(this, AboutUs.class);
+//                    startActivity(i);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new AboutUsFragment()).commit();
                     break;
                 default:
                     getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new EventFragment()).commit();

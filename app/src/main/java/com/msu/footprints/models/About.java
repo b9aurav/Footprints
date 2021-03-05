@@ -6,12 +6,14 @@ public class About implements Serializable {
 
     private String Name;
     private String Email;
+    private String Mob;
 
     public About(){}
 
-    public About(String name, String email) {
+    public About(String name, String email, String mob) {
         this.Name = name;
         this.Email = email;
+        this.Mob = mob;
     }
 
     public String getName() {
@@ -28,6 +30,14 @@ public class About implements Serializable {
 
     public void setEmail(String email) {
         Email = email;
+    }
+
+    public String getMob() {
+        return Mob;
+    }
+
+    public void setMob(String mob) {
+        Mob = mob;
     }
 
 }

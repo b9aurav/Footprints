@@ -12,14 +12,16 @@
             android:id="@+id/mAchievements"
             android:title="Achievements"
             android:icon="@drawable/ic_achievement"/>
-    </group>
-    <group
-        android:id="@+id/g2"
-        android:checkableBehavior="single">
         <item
             android:id="@+id/mSponsor"
             android:title="Sponsors"
             android:icon="@drawable/ic_sponsor"/>
+    </group>
+    <item android:title="Communicate">
+        <menu>
+    <group
+        android:id="@+id/g2"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/mContactUs"
             android:title="Contact Us"
@@ -29,4 +31,6 @@
             android:title="About"
             android:icon="@drawable/ic_aboutus"/>
     </group>
+        </menu>
+    </item>
 </menu>

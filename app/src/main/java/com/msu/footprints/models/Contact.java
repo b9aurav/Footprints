@@ -1,31 +1,31 @@
 package com.msu.footprints.models;
 
-import android.content.res.Configuration;
+import android.widget.ImageView;
 
 import java.io.Serializable;
 
 public class Contact implements Serializable {
 
-    private String Name;
+    private String ImageURL;
     private String Email;
-    private String Designation;
-    private String ContactNo;
+    private String Address;
+    private String Mob;
 
     public Contact(){}
 
-    public Contact(String name, String designation, String email, String contactNo) {
-        this.Name = name;
-        this.Designation = designation;
+    public Contact(String imageURL, String email, String address, String mob) {
+        this.ImageURL = imageURL;
         this.Email = email;
-        this.ContactNo = contactNo;
+        this.Address = address;
+        this.Mob = mob;
     }
 
-    public String getName() {
-        return Name;
+    public String getImageURL() {
+        return ImageURL;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setImageURL(String imageURL) {
+        ImageURL = imageURL;
     }
 
     public String getEmail() {
@@ -36,19 +36,19 @@ public class Contact implements Serializable {
         Email = email;
     }
 
-    public String getDesignation() {
-        return Designation;
+    public String getAddress() {
+        return Address;
     }
 
-    public void setDesignation(String designation) {
-        Designation = designation;
+    public void setAddress(String address) {
+        Address = address;
     }
 
-    public String getContactNo() {
-        return ContactNo;
+    public String getMob() {
+        return Mob;
     }
 
-    public void setContactNo(String contactNo) {
-        ContactNo = contactNo;
+    public void setMob(String mob) {
+        Mob = mob;
     }
 }

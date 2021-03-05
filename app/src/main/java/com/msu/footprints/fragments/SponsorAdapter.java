@@ -4,9 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -34,19 +37,39 @@ public class SponsorAdapter extends FirestoreRecyclerAdapter<Sponsor, SponsorAda
     }
 
     @Override
+    public void onViewDetachedFromWindow(@NonNull SponsorAdapter.ViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        holder.sponsor_card.clearAnimation();
+    }
+
+    @Override
+    public void onViewAttachedToWindow(@NonNull SponsorAdapter.ViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+        setScaleAnimation(holder.sponsor_card);
+    }
+
+    @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Sponsor model){
         Glide.with(holder.context)
                 .load(model.getImageURL())
                 .into(holder.sponsor_banner);
     }
 
+    private void setScaleAnimation(View view) {
+        ScaleAnimation anim = new ScaleAnimation(0.6f, 1.0f, 0.6f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        anim.setDuration(700);
+        view.startAnimation(anim);
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public ImageView sponsor_banner;
+        public CardView sponsor_card;
         public Context context;
 
         public ViewHolder(View itemview){
             super(itemview);
             this.sponsor_banner = (ImageView) itemView.findViewById(R.id.ivSponsor);
+            this.sponsor_card = (CardView) itemView.findViewById(R.id.sponsor_card);
             context = itemview.getContext();
         }
     }

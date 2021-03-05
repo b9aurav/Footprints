@@ -25,7 +25,6 @@ public class AchievementFragment extends Fragment{
     AchievementAdapter adapter;
     FirestoreRecyclerAdapter firestoreRecyclerAdapter;
     FirebaseFirestore firebaseFirestore;
-    String ImageURL, Title, Year, Description;
 
     @Override
     public void onCreate(Bundle savedInstanceState){

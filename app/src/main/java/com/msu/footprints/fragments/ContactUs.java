@@ -1,5 +1,6 @@
 package com.msu.footprints.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,10 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.msu.footprints.R;
 import com.msu.footprints.main.MainActivity;
+import com.msu.footprints.models.About;
 import com.msu.footprints.models.Achievement;
 import com.msu.footprints.models.Contact;
 import com.msu.footprints.models.Event;
@@ -24,10 +29,9 @@ public class ContactUs extends Fragment {
 
     RecyclerView contactus_rv;
     ContactUs_adapter adapter;
-    Contact[] contacts_data;
 
+    FirestoreRecyclerAdapter firestoreRecyclerAdapter;
     FirebaseFirestore firebaseFirestore;
-    String Name, Designation, Email, ContactNo;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,29 +55,23 @@ public class ContactUs extends Fragment {
 
         //Getting data fromFirestore
         firebaseFirestore = FirebaseFirestore.getInstance();
-        firebaseFirestore.collection("Contact Us").get().addOnCompleteListener(task -> {
-            if(task.isSuccessful()) {
-                int i = 0;
-                int len = 0;
-                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                    len++;
-                }
-                contacts_data = new Contact[len];
-                for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                    Contact contact;
-                    Name = documentSnapshot.getString("Name");
-                    Designation = documentSnapshot.getString("Designation");
-                    Email = documentSnapshot.getString("Email");
-                    ContactNo = documentSnapshot.getString("ContactNo");
-                    contact = new Contact(Name,Designation,Email,ContactNo);
-                    contacts_data[i] = contact;
-                    i++;
-                }
+        Query query = firebaseFirestore.collection("Contact Us");
+        FirestoreRecyclerOptions<Contact> options =
+                new FirestoreRecyclerOptions.Builder<Contact>().setQuery(query, Contact.class).build();
+        adapter = new ContactUs_adapter(getContext(), options);
+        firestoreRecyclerAdapter = adapter;
+        contactus_rv.setAdapter(firestoreRecyclerAdapter);
+    }
 
-                //Setting Adapter in Recyclerview
-                adapter = new ContactUs_adapter(contacts_data);
-                contactus_rv.setAdapter(adapter);
-            }
-        });
+    @Override
+    public void onStart(){
+        super.onStart();
+        firestoreRecyclerAdapter.startListening();
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        firestoreRecyclerAdapter.stopListening();
     }
 }

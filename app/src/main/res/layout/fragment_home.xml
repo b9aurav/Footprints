@@ -9,6 +9,7 @@
         android:id="@+id/events_rv"
         android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"/>
 
 </FrameLayout>

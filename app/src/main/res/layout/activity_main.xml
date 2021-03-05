@@ -35,6 +35,7 @@
             android:id="@+id/navigationView"
             android:layout_width="230dp"
             android:layout_height="match_parent"
+            app:itemShapeFillColor="@color/menu_item_background"
             android:layout_gravity="start"
             app:headerLayout="@layout/drawer_header"
             app:menu="@menu/drawer_menu_items" />

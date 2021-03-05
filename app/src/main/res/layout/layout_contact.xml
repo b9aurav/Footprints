@@ -1,80 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.loopeer.shadow.ShadowView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="10dp"
     android:foreground="?attr/selectableItemBackground"
-    android:paddingStart="5dp"
-    android:paddingTop="10dp"
-    android:paddingEnd="5dp"
-    android:paddingBottom="10dp"
-    app:backgroundColor="@color/off_purple"
-    app:cornerRadius="15dp"
+    app:backgroundColor="@color/gray"
     app:shadowColor="@color/orange_logo"
     app:shadowMargin="15dp"
-    app:shadowRadius="15dp">
+    app:shadowRadius="7dp">
 
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:columnCount="1"
-        android:layout_margin="5dp"
         android:alignmentMode="alignMargins"
         android:layout_gravity="center_horizontal"
         android:columnOrderPreserved="false">
 
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="5dp"
-        app:cardBackgroundColor="@color/off_purple"
-        android:layout_margin="10dp"
-        android:clickable="true">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tvName"
-            android:layout_width="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/contact_card"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:text="Name"
-            android:padding="10dp"/>
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp"
+            app:cardBackgroundColor="@color/off_purple"
+            android:layout_margin="10dp"
+            android:clickable="true">
 
-        <TextView
-            android:id="@+id/tvDesignation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="Designation"
-            android:paddingLeft="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="top"
+                android:layout_margin="7dp">
 
-        <TextView
-            android:id="@+id/tvEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:paddingLeft="10dp"
-            android:text="Email"/>
+                <ImageView
+                    android:id="@+id/ivContact"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center_horizontal"/>
 
-        <TextView
-            android:id="@+id/tvContactNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:paddingLeft="10dp"
-            android:text="Contact No."
-            android:paddingBottom="10dp"/>
+                <TextView
+                    android:id="@+id/tvEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:text="Email : "/>
 
-    </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/tvMob"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contact No : "
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"/>
+
+                <TextView
+                    android:id="@+id/tvAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address : "
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </GridLayout>
-</com.loopeer.shadow.ShadowView>
+
+</ScrollView>

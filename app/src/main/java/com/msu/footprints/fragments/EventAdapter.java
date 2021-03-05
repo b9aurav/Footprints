@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +26,7 @@ import com.msu.footprints.models.Event;
 public class EventAdapter extends FirestoreRecyclerAdapter<Event, EventAdapter.ViewHolder>{
 
     private Context context;
+    private int lastPosition = -1;
 
     public EventAdapter(Context context, FirestoreRecyclerOptions<Event> options){
         super(options);
@@ -39,8 +43,21 @@ public class EventAdapter extends FirestoreRecyclerAdapter<Event, EventAdapter.V
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Event model){
+    public void onViewDetachedFromWindow(@NonNull ViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        holder.event_card.clearAnimation();
+    }
 
+    @Override
+    public void onViewAttachedToWindow(@NonNull ViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+        setScaleAnimation(holder.event_card);
+    }
+
+    @Override
+    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Event model) {
+        holder.title.setSelected(true);
+        holder.summary.setSelected(true);
         holder.title.setText(model.getTitle());
         holder.summary.setText(model.getSummary());
         Glide.with(holder.context)
@@ -60,8 +77,12 @@ public class EventAdapter extends FirestoreRecyclerAdapter<Event, EventAdapter.V
             context.startActivity(intent);
 
         });
+    }
 
-//        EventFragment.loading.dismiss();
+    private void setScaleAnimation(View view) {
+            ScaleAnimation anim = new ScaleAnimation(0.6f, 1.0f, 0.6f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            anim.setDuration(700);
+            view.startAnimation(anim);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

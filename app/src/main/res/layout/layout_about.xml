@@ -1,36 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.loopeer.shadow.ShadowView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:elevation="10dp"
     android:foreground="?attr/selectableItemBackground"
-    android:paddingStart="5dp"
-    android:paddingTop="10dp"
-    android:paddingEnd="5dp"
-    android:paddingBottom="10dp"
-    app:backgroundColor="@color/white"
-    app:cornerRadiusBR="0dp"
-    app:cornerRadiusTL="0dp"
+    app:backgroundColor="@color/gray"
     app:shadowColor="@color/orange_logo"
-    app:shadowMargin="15dp">
-
+    app:shadowMargin="15dp"
+    app:shadowRadius="7dp">
 
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:columnCount="1"
-        android:layout_margin="5dp"
         android:alignmentMode="alignMargins"
         android:layout_gravity="center_horizontal"
         android:columnOrderPreserved="false">
 
+
         <androidx.cardview.widget.CardView
+            android:id="@+id/about_card"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            app:cardCornerRadius="12dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="5dp"
             app:cardElevation="5dp"
-            app:cardBackgroundColor="#1f4068"
+            app:cardBackgroundColor="@color/off_purple"
             android:layout_margin="10dp"
             android:clickable="true">
 
@@ -38,128 +33,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:gravity="top">
-
-               <TextView
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:text="Tushar Gangani"
-                   android:textStyle="bold"
-                   android:textSize="20dp"
-                   android:textColor="@color/orange_logo"
-                   android:padding="10dp"
-                   ></TextView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/t_mobile"
-                    android:textSize="10dp"
-                    android:textColor="@color/white"
-                    android:paddingLeft="10dp"
-                    ></TextView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/t_email"
-                    android:paddingLeft="10dp"
-                    android:textSize="10dp"
-                    android:textColor="@color/white"
-                    ></TextView>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="5dp"
-            app:cardBackgroundColor="#1f4068"
-            android:layout_margin="10dp"
-            android:clickable="true">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:layout_margin="7dp"
                 android:gravity="top">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Harsh Kanani"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
                     android:textColor="@color/orange_logo"
-                    android:padding="10dp"
-                    ></TextView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/h_mobile"
-                    android:textSize="10dp"
-                    android:textColor="@color/white"
-                    android:paddingLeft="10dp"
-                    ></TextView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/h_email"
-                    android:paddingLeft="10dp"
-                    android:textSize="10dp"
-                    android:textColor="@color/white"
-                    ></TextView>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="5dp"
-            app:cardBackgroundColor="#1f4068"
-            android:layout_margin="10dp"
-            android:clickable="true">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="top">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Bambhaniya Gaurav"
-                    android:textStyle="bold"
                     android:textSize="20dp"
-                    android:textColor="@color/orange_logo"
-                    android:padding="10dp"
-                    ></TextView>
+                    android:text="Name"/>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/tvEmail"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/g_mobile"
-                    android:textSize="10dp"
+                    android:layout_marginTop="10dp"
                     android:textColor="@color/white"
-                    android:paddingLeft="10dp"
-                    ></TextView>
+                    android:textSize="16dp"
+                    android:text="Email : "/>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/tvMob"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/g_email"
-                    android:paddingLeft="10dp"
-                    android:textSize="10dp"
+                    android:text="Contact No : "
+                    android:layout_marginTop="10dp"
                     android:textColor="@color/white"
-                    ></TextView>
+                    android:textSize="16dp"/>
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
     </GridLayout>
 
-</com.loopeer.shadow.ShadowView>
+</ScrollView>

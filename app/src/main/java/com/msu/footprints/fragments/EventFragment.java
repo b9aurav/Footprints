@@ -7,12 +7,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -22,6 +24,10 @@ import com.msu.footprints.main.EventDetailsActivity;
 import com.msu.footprints.R;
 import com.msu.footprints.main.MainActivity;
 import com.msu.footprints.models.Event;
+
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.ScaleInAnimator;
 
 public class EventFragment extends Fragment {
 
@@ -63,10 +69,9 @@ public class EventFragment extends Fragment {
 
 //        loading.show();
 
-
         //Recycler View Initialization
         recyclerView = view.findViewById(R.id.events_rv);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
         //Getting data fromFirestore
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -76,7 +81,6 @@ public class EventFragment extends Fragment {
                 new FirestoreRecyclerOptions.Builder<Event>().setQuery(query, Event.class).build();
         adapter = new EventAdapter(getContext(), options);
         firestoreRecyclerAdapter = adapter;
-
         recyclerView.setAdapter(firestoreRecyclerAdapter);
     }
 
