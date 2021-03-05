@@ -1,9 +1,12 @@
 package com.msu.footprints.main;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,9 +16,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 
 import com.github.florent37.awesomebar.AwesomeBar;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.msu.footprints.R;
+import com.msu.footprints.VolunteerFragment;
 import com.msu.footprints.models.Event;
 
 public class EventDetailsActivity extends AppCompatActivity{
@@ -31,7 +37,7 @@ public class EventDetailsActivity extends AppCompatActivity{
     FirebaseFirestore firebaseFirestore;
     String path, title;
     Event event;
-
+    com.google.android.material.floatingactionbutton.FloatingActionButton volunteerBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -42,6 +48,7 @@ public class EventDetailsActivity extends AppCompatActivity{
         Intent intent = getIntent();
         path = intent.getStringExtra("Path");
         title = intent.getStringExtra("Title");
+
         init();
 
 
@@ -199,6 +206,7 @@ public class EventDetailsActivity extends AppCompatActivity{
         titles = findViewById(R.id.titles);
         titles.setText(title);
         toolbar.displayHomeAsUpEnabled(true);
+        volunteerBtn = findViewById(R.id.volunterBtn);
 
         toolbar.setOnMenuClickedListener(v -> onBackPressed());
 
@@ -206,6 +214,13 @@ public class EventDetailsActivity extends AppCompatActivity{
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        volunteerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VolunteerFragment bottomSheet = new VolunteerFragment();
+                bottomSheet.show(getSupportFragmentManager(), bottomSheet.getTag());
+            }
+        });
         event = new Event();
     }
 }
