@@ -1,27 +1,18 @@
 package com.msu.footprints.main;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 
 import com.github.florent37.awesomebar.AwesomeBar;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.msu.footprints.R;
-import com.msu.footprints.VolunteerFragment;
 import com.msu.footprints.models.Event;
 
 public class EventDetailsActivity extends AppCompatActivity{
@@ -75,6 +66,11 @@ public class EventDetailsActivity extends AppCompatActivity{
                 event.setPresentation(document.getString("Presentation"));
                 event.setSubmission(document.getString("Submission"));
                 event.setRequirements(document.getString("Requirements"));
+
+
+                if (document.getBoolean("Temp")!=null){
+                    Toast.makeText(getApplicationContext(), "In Developing...", Toast.LENGTH_LONG).show();
+                }
 
                 tvDescription.setText(event.getDescription().replace("\\n", "\n"));
                 if (event.getFees() != null) {
@@ -164,6 +160,14 @@ public class EventDetailsActivity extends AppCompatActivity{
 
         });
 
+        findViewById(R.id.fabRegister).setOnClickListener(view -> {
+            if (event.getRegisterLink() != null) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(event.getRegisterLink()));
+                startActivity(i);
+            } else
+                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+        });
 
     }
 
@@ -206,7 +210,7 @@ public class EventDetailsActivity extends AppCompatActivity{
         titles = findViewById(R.id.titles);
         titles.setText(title);
         toolbar.displayHomeAsUpEnabled(true);
-        volunteerBtn = findViewById(R.id.volunterBtn);
+//        volunteerBtn = findViewById(R.id.volunterBtn);
 
         toolbar.setOnMenuClickedListener(v -> onBackPressed());
 
@@ -214,13 +218,13 @@ public class EventDetailsActivity extends AppCompatActivity{
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        volunteerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                VolunteerFragment bottomSheet = new VolunteerFragment();
-                bottomSheet.show(getSupportFragmentManager(), bottomSheet.getTag());
-            }
-        });
+//        volunteerBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                VolunteerFragment bottomSheet = new VolunteerFragment();
+//                bottomSheet.show(getSupportFragmentManager(), bottomSheet.getTag());
+//            }
+//        });
         event = new Event();
     }
 }
