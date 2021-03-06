@@ -3,59 +3,122 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VolunteerFragment"
-    android:background="@color/purple_200">
+    android:background="@color/purple_200"
+    tools:context=".VolunteerFragment">
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/help"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="10dp">
-
-    </ImageView>
-    <TextView
-        android:id="@+id/headingTV"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="Incharge"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="7dp"
-        android:textColor="@color/white"
-        android:textStyle="bold"/>
+        android:layout_alignParentTop="true">
 
-            <TextView
-                android:id="@+id/volunteer1TV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/headingTV"
-                android:textSize="25dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginBottom="5dp"
-                android:text="Volunteer 1"
-                android:textColor="@color/white"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/help">
 
-            <TextView
-                android:id="@+id/volunteer1EmailTV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/volunteer1TV"
-                android:textSize="20dp"
-                android:layout_marginLeft="80dp"
-                android:layout_marginBottom="5dp"
-                android:text="Email : abc@abc.com"
-                android:textColor="@color/white"/>
+        </ImageView>
 
-            <TextView
-                android:id="@+id/volunteer1MobTV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/volunteer1EmailTV"
-                android:textSize="20dp"
-                android:layout_marginLeft="80dp"
-                android:text="Mobile No. : +91 1234567890"
-                android:textColor="@color/white"
-                android:paddingBottom="10dp"/>
+        <TextView
+            android:id="@+id/tvHeading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="7dp"
+            android:text="Incharge"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tvIncharge1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvHeading"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:text="Volunteer 1"
+            android:textColor="@color/white"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/tvInchargeEmail1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvIncharge1"
+            android:layout_marginLeft="80dp"
+            android:layout_marginBottom="5dp"
+            android:text="Email : abc@abc.com"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tvInchargeMob1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvInchargeEmail1"
+            android:layout_marginLeft="80dp"
+            android:paddingBottom="10dp"
+            android:text="Mobile No. : +91 1234567890"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout1"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tvIncharge2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvHeading"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:text="Volunteer 1"
+            android:textColor="@color/white"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/tvInchargeEmail2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvIncharge1"
+            android:layout_marginLeft="80dp"
+            android:layout_marginBottom="5dp"
+            android:text="Email : abc@abc.com"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tvInchargeMob2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvInchargeEmail1"
+            android:layout_marginLeft="80dp"
+            android:paddingBottom="10dp"
+            android:text="Mobile No. : +91 1234567890"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+
 </RelativeLayout>

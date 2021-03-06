@@ -274,15 +274,15 @@
         android:src="@drawable/ic_add_female_user"
         app:backgroundTint="@color/orange_logo" />
 
-    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-    <!--        android:id="@+id/volunterBtn"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_alignParentRight="true"-->
-    <!--        android:layout_alignParentBottom="true"-->
-    <!--        android:layout_marginRight="90dp"-->
-    <!--        android:layout_marginBottom="20dp"-->
-    <!--        android:backgroundTintMode="add"-->
-    <!--        android:src="@drawable/help"-->
-    <!--        app:backgroundTint="@color/orange_logo" />-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabIncharge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="90dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTintMode="add"
+        android:src="@drawable/help"
+        app:backgroundTint="@color/orange_logo" />
 </RelativeLayout>

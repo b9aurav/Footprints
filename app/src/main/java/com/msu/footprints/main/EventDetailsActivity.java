@@ -13,6 +13,7 @@ import com.github.florent37.awesomebar.AwesomeBar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.msu.footprints.R;
+import com.msu.footprints.VolunteerFragment;
 import com.msu.footprints.models.Event;
 
 public class EventDetailsActivity extends AppCompatActivity{
@@ -28,7 +29,6 @@ public class EventDetailsActivity extends AppCompatActivity{
     FirebaseFirestore firebaseFirestore;
     String path, title;
     Event event;
-    com.google.android.material.floatingactionbutton.FloatingActionButton volunteerBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -169,6 +169,11 @@ public class EventDetailsActivity extends AppCompatActivity{
                 Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
         });
 
+        findViewById(R.id.fabIncharge).setOnClickListener(v -> {
+            VolunteerFragment bottomSheet = new VolunteerFragment(path);
+            bottomSheet.show(getSupportFragmentManager(), bottomSheet.getTag());
+        });
+
     }
 
     private void init(){
@@ -210,7 +215,6 @@ public class EventDetailsActivity extends AppCompatActivity{
         titles = findViewById(R.id.titles);
         titles.setText(title);
         toolbar.displayHomeAsUpEnabled(true);
-//        volunteerBtn = findViewById(R.id.volunterBtn);
 
         toolbar.setOnMenuClickedListener(v -> onBackPressed());
 
@@ -218,13 +222,7 @@ public class EventDetailsActivity extends AppCompatActivity{
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-//        volunteerBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                VolunteerFragment bottomSheet = new VolunteerFragment();
-//                bottomSheet.show(getSupportFragmentManager(), bottomSheet.getTag());
-//            }
-//        });
+
         event = new Event();
     }
 }
