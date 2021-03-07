@@ -1,12 +1,18 @@
 package com.msu.footprints.main;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.florent37.awesomebar.AwesomeBar;
@@ -16,7 +22,24 @@ import com.msu.footprints.R;
 import com.msu.footprints.VolunteerFragment;
 import com.msu.footprints.models.Event;
 
-public class EventDetailsActivity extends AppCompatActivity{
+import java.util.List;
+
+import razerdp.basepopup.BaseLazyPopupWindow;
+import razerdp.basepopup.BasePopupFlag;
+import razerdp.basepopup.BasePopupInitializer;
+import razerdp.basepopup.BasePopupWindow;
+import razerdp.basepopup.QuickPopupBuilder;
+import razerdp.basepopup.QuickPopupConfig;
+import razerdp.util.animation.AnimationHelper;
+import razerdp.util.animation.ScaleConfig;
+import razerdp.widget.QuickPopup;
+
+public class EventDetailsActivity extends AppCompatActivity {
+
+    QuickPopup popup;
+    String pat;
+    TextView tvVol1, tvVol2, tvVolEmail1, tvVolEmail2, tvVolMob1, tvVolMob2;
+    ImageView cb_email, cb_contact, cb_email2, cb_contact2;
 
     TextView tvProblem, tvDescription, tvRule, tvRound;
     TextView tvRuleDes, tvRoundDes;
@@ -31,7 +54,7 @@ public class EventDetailsActivity extends AppCompatActivity{
     Event event;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details);
 
@@ -41,7 +64,6 @@ public class EventDetailsActivity extends AppCompatActivity{
         title = intent.getStringExtra("Title");
 
         init();
-
 
         firebaseFirestore.document(path).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -68,7 +90,7 @@ public class EventDetailsActivity extends AppCompatActivity{
                 event.setRequirements(document.getString("Requirements"));
 
 
-                if (document.getBoolean("Temp")!=null){
+                if (document.getBoolean("Temp") != null) {
                     Toast.makeText(getApplicationContext(), "In Developing...", Toast.LENGTH_LONG).show();
                 }
 
@@ -170,13 +192,15 @@ public class EventDetailsActivity extends AppCompatActivity{
         });
 
         findViewById(R.id.fabIncharge).setOnClickListener(v -> {
-            VolunteerFragment bottomSheet = new VolunteerFragment(path);
-            bottomSheet.show(getSupportFragmentManager(), bottomSheet.getTag());
+            volunteer_popup();
+            volunteer_details();
+//            VolunteerFragment bottomSheet = new VolunteerFragment(path);
+//            bottomSheet.show(getSupportFragmentManager(), bottomSheet.getTag());
         });
 
     }
 
-    private void init(){
+    private void init() {
         tvProblem = findViewById(R.id.tvProblem);
         tvDescription = findViewById(R.id.tvDescription);
         tvRule = findViewById(R.id.tvRule);
@@ -224,5 +248,62 @@ public class EventDetailsActivity extends AppCompatActivity{
 
 
         event = new Event();
+    }
+
+    public void volunteer_details() {
+        tvVol1 = popup.findViewById(R.id.tvIncharge1);
+        tvVol2 = popup.findViewById(R.id.tvIncharge2);
+        tvVolEmail1 = popup.findViewById(R.id.tvInchargeEmail1);
+        tvVolEmail2 = popup.findViewById(R.id.tvInchargeEmail2);
+        cb_email = popup.findViewById(R.id.cb_email);
+        cb_email2 = popup.findViewById(R.id.cb_email2);
+
+        tvVolMob1 = popup.findViewById(R.id.tvInchargeMob1);
+        tvVolMob2 = popup.findViewById(R.id.tvInchargeMob2);
+        cb_contact = popup.findViewById(R.id.cb_contact);
+        cb_contact2 = popup.findViewById(R.id.cb_contact2);
+
+        pat = path;
+        FirebaseFirestore.getInstance().collection(pat + "/Incharge").orderBy("Priority").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                List<DocumentSnapshot> documents = task.getResult().getDocuments();
+                if (documents.get(0) != null) {
+                    popup.findViewById(R.id.linearLayout1).setVisibility(View.VISIBLE);
+                    tvVol1.setText(documents.get(0).getString("Name"));
+                    tvVolEmail1.setText(documents.get(0).getString("Email"));
+                    tvVolMob1.setText(documents.get(0).getString("Mob"));
+                }
+                if (documents.get(1) != null) {
+                    popup.findViewById(R.id.linearLayout2).setVisibility(View.VISIBLE);
+                    tvVol2.setText(documents.get(1).getString("Name"));
+                    tvVolEmail2.setText(documents.get(1).getString("Email"));
+                    tvVolMob2.setText(documents.get(1).getString("Mob"));
+                }
+            }
+        });
+
+        cb_email.setOnClickListener(v -> {
+            Clipboard(tvVolEmail1);
+        });
+        cb_email2.setOnClickListener(v -> {
+            Clipboard(tvVolEmail2);
+        });
+        cb_contact.setOnClickListener(v -> {
+            Clipboard(tvVolMob1);
+        });
+        cb_contact2.setOnClickListener(v -> {
+            Clipboard(tvVolMob2);
+        });
+    }
+
+    public void Clipboard(TextView textView) {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("", textView.getText().toString().trim());
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(EventDetailsActivity.this, "Copied to Clipboard", Toast.LENGTH_SHORT).show();
+    }
+
+    public void volunteer_popup() {
+        popup = QuickPopupBuilder.with((Context)this).contentView(R.layout.volunteer_popup).config(new QuickPopupConfig().withShowAnimation(((AnimationHelper.AnimationBuilder) AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER)).toShow()).withDismissAnimation(((AnimationHelper.AnimationBuilder) AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER)).toDismiss()).withClick(R.id.dismiss, (View.OnClickListener) null, true).blurBackground(true).outSideDismiss(false)).show();
     }
 }

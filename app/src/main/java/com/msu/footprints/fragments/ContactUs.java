@@ -1,5 +1,7 @@
 package com.msu.footprints.fragments;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -12,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -19,6 +23,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.msu.footprints.R;
+import com.msu.footprints.main.EventDetailsActivity;
 import com.msu.footprints.main.MainActivity;
 import com.msu.footprints.models.About;
 import com.msu.footprints.models.Achievement;

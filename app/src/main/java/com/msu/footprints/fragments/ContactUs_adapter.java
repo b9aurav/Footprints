@@ -1,5 +1,7 @@
 package com.msu.footprints.fragments;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -56,6 +59,25 @@ public class ContactUs_adapter extends FirestoreRecyclerAdapter<Contact, Contact
         Glide.with(holder.context)
                 .load(model.getImageURL())
                 .into(holder.contact);
+
+        holder.cb_email.setOnClickListener(v -> {
+            Clipboard(holder.email);
+        });
+
+        holder.cb_mob.setOnClickListener(v -> {
+            Clipboard(holder.mob);
+        });
+
+        holder.cb_address.setOnClickListener(v -> {
+            Clipboard(holder.address);
+        });
+    }
+
+    public void Clipboard(TextView textView) {
+        ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("", textView.getText().toString().trim());
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(context, "Copied to Clipboard", Toast.LENGTH_SHORT).show();
     }
 
     private void setScaleAnimation(View view) {
@@ -69,6 +91,9 @@ public class ContactUs_adapter extends FirestoreRecyclerAdapter<Contact, Contact
         public TextView address;
         public TextView email;
         public TextView mob;
+        public ImageView cb_address;
+        public ImageView cb_email;
+        public ImageView cb_mob;
         public CardView contact_card;
         public Context context;
 
@@ -78,6 +103,9 @@ public class ContactUs_adapter extends FirestoreRecyclerAdapter<Contact, Contact
             this.address = (TextView) itemView.findViewById(R.id.tvAddress);
             this.email = (TextView) itemView.findViewById(R.id.tvEmail);
             this.mob = (TextView) itemView.findViewById(R.id.tvMob);
+            this.cb_address = (ImageView) itemView.findViewById(R.id.cb_address);
+            this.cb_email = (ImageView) itemView.findViewById(R.id.cb_email);
+            this.cb_mob = (ImageView) itemView.findViewById(R.id.cb_contact);
             this.contact_card = (CardView) itemView.findViewById(R.id.contact_card);
             this.context = itemview.getContext();
         }

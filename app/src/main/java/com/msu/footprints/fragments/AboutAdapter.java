@@ -1,12 +1,16 @@
 package com.msu.footprints.fragments;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -51,6 +55,21 @@ public class AboutAdapter extends FirestoreRecyclerAdapter<About, AboutAdapter.V
         holder.name.setText(model.getName());
         holder.email.setText(model.getEmail());
         holder.mob.setText(model.getMob());
+
+        holder.cb_email.setOnClickListener(v -> {
+            Clipboard(holder.email);
+        });
+
+        holder.cb_mob.setOnClickListener(v -> {
+            Clipboard(holder.mob);
+        });
+    }
+
+    public void Clipboard(TextView textView) {
+        ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("", textView.getText().toString().trim());
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(context, "Copied to Clipboard", Toast.LENGTH_SHORT).show();
     }
 
     private void setScaleAnimation(View view) {
@@ -63,6 +82,8 @@ public class AboutAdapter extends FirestoreRecyclerAdapter<About, AboutAdapter.V
         public TextView name;
         public TextView email;
         public TextView mob;
+        public ImageView cb_email;
+        public ImageView cb_mob;
         public CardView about_card;
 
         public ViewHolder(View itemview) {
@@ -70,6 +91,8 @@ public class AboutAdapter extends FirestoreRecyclerAdapter<About, AboutAdapter.V
             this.name = (TextView) itemView.findViewById(R.id.tvName);
             this.email = (TextView) itemView.findViewById(R.id.tvEmail);
             this.mob = (TextView) itemView.findViewById(R.id.tvMob);
+            this.cb_email = (ImageView) itemView.findViewById(R.id.cb_email);
+            this.cb_mob = (ImageView) itemView.findViewById(R.id.cb_contact);
             this.about_card = (CardView) itemView.findViewById(R.id.about_card);
         }
     }

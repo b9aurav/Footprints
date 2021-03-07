@@ -58,12 +58,12 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/tv_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -76,17 +76,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginEnd="35dp"
+                    android:layout_toRightOf="@+id/tv_email"
                     android:textColor="@color/white"
                     android:textSize="16dp"/>
 
-            </LinearLayout>
+                <ImageView
+                    android:id="@+id/cb_email"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:src="@drawable/ic_clipboard"/>
 
-            <LinearLayout
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/tv_contact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Contact No : "
@@ -100,9 +110,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/white"
+                    android:layout_marginEnd="35dp"
+                    android:layout_toRightOf="@+id/tv_contact"
                     android:textSize="16dp"/>
 
-            </LinearLayout>
+                <ImageView
+                    android:id="@+id/cb_contact"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:src="@drawable/ic_clipboard"/>
+
+            </RelativeLayout>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

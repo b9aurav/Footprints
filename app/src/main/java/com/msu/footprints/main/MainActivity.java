@@ -79,34 +79,7 @@ public class MainActivity extends AppCompatActivity{
 
         toolbar.addAction(R.drawable.ic_bug_report, "Report");
         toolbar.setActionItemClickListener((position, actionItem) -> {
-
-            final LayoutInflater li = LayoutInflater.from(MainActivity.this);
-            final View promptsView = li.inflate(R.layout.dialog_report_bug, null);
-
-            final EditText etReport = promptsView.findViewById(R.id.etReportDescription);
-
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
-            alertDialogBuilder.setView(promptsView);
-            alertDialogBuilder.setCancelable(false).setPositiveButton("Send", (dialog, id) -> {
-            }).setNegativeButton("Cancel", (dialog, id) -> dialog.cancel());
-
-            alertDialogBuilder.setTitle("Please tell me about issue!");
-            final AlertDialog alertDialog = alertDialogBuilder.create();
-            alertDialog.show();
-
-            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
-                final String reportText = String.valueOf(etReport.getText()).trim();
-                if (TextUtils.isEmpty(reportText)) {
-                    Toast.makeText(getApplicationContext(), "Please write few words!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Map<String, Object> bugs = new HashMap<>();
-                    bugs.put("Description", reportText);
-                    FirebaseFirestore.getInstance().collection("Bugs").document(UUID.randomUUID().toString()).set(bugs);
-                    Toast.makeText(getApplicationContext(), "Your report were submitted", Toast.LENGTH_SHORT).show();
-                    alertDialog.dismiss();
-                }
-            });
-
+            report();
         });
 
         navigationView = findViewById(R.id.navigationView);
@@ -115,33 +88,7 @@ public class MainActivity extends AppCompatActivity{
         getSupportFragmentManager().beginTransaction().add(R.id.main_fragment, new EventFragment()).commit();
 
         navigationView.setNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.mHome:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new EventFragment()).commit();
-                    break;
-                case R.id.mAchievements:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new AchievementFragment()).commit();
-                    break;
-                case R.id.mSponsor:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new SponsorsFragment()).commit();
-                    break;
-//                case R.id.mShare:
-//                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-//                    sharingIntent.setType("application/vnd.android.package-archive");
-//                    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "FootPrints");
-//                    startActivity(Intent.createChooser(sharingIntent, "Share app via"));
-//                    share();
-//                    break;
-                case R.id.mContactUs:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new ContactUs()).commit();
-                    break;
-                case R.id.mAbout:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new AboutUsFragment()).commit();
-                    break;
-                default:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new EventFragment()).commit();
-                    break;
-            }
+            navigation_listener(item);
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;
         });
@@ -180,6 +127,65 @@ public class MainActivity extends AppCompatActivity{
                 return true;
         }
         return false;
+    }
+
+    public void navigation_listener(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.mHome:
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new EventFragment()).commit();
+                break;
+            case R.id.mAchievements:
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new AchievementFragment()).commit();
+                break;
+            case R.id.mSponsor:
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new SponsorsFragment()).commit();
+                break;
+//                case R.id.mShare:
+//                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+//                    sharingIntent.setType("application/vnd.android.package-archive");
+//                    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "FootPrints");
+//                    startActivity(Intent.createChooser(sharingIntent, "Share app via"));
+//                    share();
+//                    break;
+            case R.id.mContactUs:
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new ContactUs()).commit();
+                break;
+            case R.id.mAbout:
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new AboutUsFragment()).commit();
+                break;
+            default:
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new EventFragment()).commit();
+                break;
+        }
+    }
+
+    public void report() {
+        final LayoutInflater li = LayoutInflater.from(MainActivity.this);
+        final View promptsView = li.inflate(R.layout.dialog_report_bug, null);
+
+        final EditText etReport = promptsView.findViewById(R.id.etReportDescription);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+        alertDialogBuilder.setView(promptsView);
+        alertDialogBuilder.setCancelable(false).setPositiveButton("Send", (dialog, id) -> {
+        }).setNegativeButton("Cancel", (dialog, id) -> dialog.cancel());
+
+        alertDialogBuilder.setTitle("Please tell me about issue!");
+        final AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+            final String reportText = String.valueOf(etReport.getText()).trim();
+            if (TextUtils.isEmpty(reportText)) {
+                Toast.makeText(getApplicationContext(), "Please write few words!", Toast.LENGTH_SHORT).show();
+            } else {
+                Map<String, Object> bugs = new HashMap<>();
+                bugs.put("Description", reportText);
+                FirebaseFirestore.getInstance().collection("Bugs").document(UUID.randomUUID().toString()).set(bugs);
+                Toast.makeText(getApplicationContext(), "Your report were submitted", Toast.LENGTH_SHORT).show();
+                alertDialog.dismiss();
+            }
+        });
     }
 
     public void share(){

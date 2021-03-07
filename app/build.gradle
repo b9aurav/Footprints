@@ -55,6 +55,7 @@ dependencies {
     implementation 'com.github.florent37:awesomebar:1.0.3'
     implementation 'nl.psdcompany:duo-navigation-drawer:3.0.0'
     implementation 'jp.wasabeef:recyclerview-animators:4.0.2'
+    implementation 'com.github.razerdp:BasePopup:2.2.20'
 //    implementation 'com.android.support:palette-v7:28.0.0
 
     //Card View
@@ -64,5 +65,5 @@ dependencies {
 
     implementation 'com.google.android.material:material:1.2.0-alpha02'
 
-    compile 'com.android.support:design:23.1.1'
+    compile 'com.android.support:design:30.1.1'
 }
