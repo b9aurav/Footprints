@@ -13,7 +13,7 @@ import com.github.florent37.awesomebar.AwesomeBar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.msu.footprints.R;
-import com.msu.footprints.VolunteerFragment;
+import com.msu.footprints.fragments.VolunteerFragment;
 import com.msu.footprints.models.Event;
 
 public class EventDetailsActivity extends AppCompatActivity{
