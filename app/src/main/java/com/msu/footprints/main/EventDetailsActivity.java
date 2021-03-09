@@ -11,30 +11,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.florent37.awesomebar.AwesomeBar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.msu.footprints.R;
-import com.msu.footprints.fragments.VolunteerFragment;
 import com.msu.footprints.models.Event;
 
 import java.util.List;
 
-import razerdp.basepopup.BaseLazyPopupWindow;
-import razerdp.basepopup.BasePopupFlag;
-import razerdp.basepopup.BasePopupInitializer;
-import razerdp.basepopup.BasePopupWindow;
 import razerdp.basepopup.QuickPopupBuilder;
 import razerdp.basepopup.QuickPopupConfig;
 import razerdp.util.animation.AnimationHelper;
 import razerdp.util.animation.ScaleConfig;
 import razerdp.widget.QuickPopup;
 
-public class EventDetailsActivity extends AppCompatActivity {
+
+public class EventDetailsActivity extends AppCompatActivity{
 
     QuickPopup popup;
     String pat;
@@ -54,7 +48,7 @@ public class EventDetailsActivity extends AppCompatActivity {
     Event event;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details);
 
@@ -78,6 +72,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                 event.setFees(document.getString("Fees"));
                 event.setTeamSize(document.getString("TeamSize"));
                 event.setRegisterLink(document.getString("RegisterLink"));
+                event.setDocURL(document.getString("docURL"));
 
                 event.setAbstract(document.getString("Abstract"));
                 event.setSpecification(document.getString("Specification"));
@@ -89,6 +84,9 @@ public class EventDetailsActivity extends AppCompatActivity {
                 event.setSubmission(document.getString("Submission"));
                 event.setRequirements(document.getString("Requirements"));
 
+                if (event.getDocURL() != null) {
+
+                }
 
                 if (document.getBoolean("Temp") != null) {
                     Toast.makeText(getApplicationContext(), "In Developing...", Toast.LENGTH_LONG).show();
@@ -200,7 +198,7 @@ public class EventDetailsActivity extends AppCompatActivity {
 
     }
 
-    private void init() {
+    private void init(){
         tvProblem = findViewById(R.id.tvProblem);
         tvDescription = findViewById(R.id.tvDescription);
         tvRule = findViewById(R.id.tvRule);
@@ -250,7 +248,7 @@ public class EventDetailsActivity extends AppCompatActivity {
         event = new Event();
     }
 
-    public void volunteer_details() {
+    public void volunteer_details(){
         tvVol1 = popup.findViewById(R.id.tvIncharge1);
         tvVol2 = popup.findViewById(R.id.tvIncharge2);
         tvVolEmail1 = popup.findViewById(R.id.tvInchargeEmail1);
@@ -296,14 +294,14 @@ public class EventDetailsActivity extends AppCompatActivity {
         });
     }
 
-    public void Clipboard(TextView textView) {
+    public void Clipboard(TextView textView){
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("", textView.getText().toString().trim());
         clipboard.setPrimaryClip(clip);
         Toast.makeText(EventDetailsActivity.this, "Copied to Clipboard", Toast.LENGTH_SHORT).show();
     }
 
-    public void volunteer_popup() {
-        popup = QuickPopupBuilder.with((Context)this).contentView(R.layout.volunteer_popup).config(new QuickPopupConfig().withShowAnimation(((AnimationHelper.AnimationBuilder) AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER)).toShow()).withDismissAnimation(((AnimationHelper.AnimationBuilder) AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER)).toDismiss()).withClick(R.id.dismiss, (View.OnClickListener) null, true).blurBackground(true).outSideDismiss(false)).show();
+    public void volunteer_popup(){
+        popup = QuickPopupBuilder.with((Context) this).contentView(R.layout.volunteer_popup).config(new QuickPopupConfig().withShowAnimation(((AnimationHelper.AnimationBuilder) AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER)).toShow()).withDismissAnimation(((AnimationHelper.AnimationBuilder) AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER)).toDismiss()).withClick(R.id.dismiss, (View.OnClickListener) null, true).blurBackground(true).outSideDismiss(false)).show();
     }
 }

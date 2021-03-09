@@ -7,7 +7,10 @@ public class Event implements Serializable{
     private String Title, Description, Summary, Rules, Rounds;
     private String Provide, Instruction, GenInstruction, Criteria, Specification, Presentation, Abstract, Submission, Requirements;
     private String Fees, RegisterLink, ImageURL, TeamSize;
-    private boolean Category, RuleRound;
+    private String docURL;
+    private boolean Category, RuleRound, current;
+
+    private  String  highlights, schedule, prerequistes, dateTime, problem;
 
     public Event(){
     }
@@ -185,5 +188,61 @@ public class Event implements Serializable{
 
     public void setRequirements(String requirements){
         Requirements = requirements;
+    }
+
+    public String getDocURL(){
+        return docURL;
+    }
+
+    public void setDocURL(String docURL){
+        this.docURL = docURL;
+    }
+
+    public String getProblem(){
+        return problem;
+    }
+
+    public void setProblem(String problem){
+        this.problem = problem;
+    }
+
+    public String getDateTime(){
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime){
+        this.dateTime = dateTime;
+    }
+
+    public String getPrerequistes(){
+        return prerequistes;
+    }
+
+    public void setPrerequistes(String prerequistes){
+        this.prerequistes = prerequistes;
+    }
+
+    public String getSchedule(){
+        return schedule;
+    }
+
+    public void setSchedule(String schedule){
+        this.schedule = schedule;
+    }
+
+    public String getHighlights(){
+        return highlights;
+    }
+
+    public void setHighlights(String highlights){
+        this.highlights = highlights;
+    }
+
+    public boolean isCurrent(){
+        return current;
+    }
+
+    public void setCurrent(boolean current){
+        this.current = current;
     }
 }

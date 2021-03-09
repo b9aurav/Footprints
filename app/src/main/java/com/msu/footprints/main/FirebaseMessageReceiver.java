@@ -33,7 +33,7 @@ public class FirebaseMessageReceiver extends FirebaseMessagingService{
                           remoteMessage.getData().get("message"));
         }*/
 
-        // Second case when notification payload is
+        // Second case when notification payload iss
         // received.
         if (remoteMessage.getNotification() != null) {
             // Since the notification is received directly from
