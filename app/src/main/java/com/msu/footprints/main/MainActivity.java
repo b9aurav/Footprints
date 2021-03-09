@@ -1,19 +1,23 @@
 package com.msu.footprints.main;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +32,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.github.florent37.awesomebar.AwesomeBar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.infideap.drawerbehavior.Advance3DDrawerLayout;
+import com.infideap.drawerbehavior.AdvanceDrawerLayout;
 import com.msu.footprints.R;
 import com.msu.footprints.fragments.AboutUsFragment;
 import com.msu.footprints.fragments.AchievementFragment;
@@ -40,14 +46,22 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import razerdp.basepopup.QuickPopupBuilder;
+import razerdp.basepopup.QuickPopupConfig;
+import razerdp.util.animation.AnimationHelper;
+import razerdp.util.animation.ScaleConfig;
+import razerdp.widget.QuickPopup;
+
 public class MainActivity extends AppCompatActivity{
 
     public static AwesomeBar toolbar;
-    DrawerLayout drawerLayout;
+    Advance3DDrawerLayout drawerLayout;
     NavigationView navigationView;
     public static TextView titles;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
+
+    QuickPopup popup;
+    EditText report_text;
+    TextView submit;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -79,8 +93,15 @@ public class MainActivity extends AppCompatActivity{
 
         toolbar.addAction(R.drawable.ic_bug_report, "Report");
         toolbar.setActionItemClickListener((position, actionItem) -> {
-            report();
+            report_popup();
+            report_details();
         });
+
+        drawerLayout.setViewRotation(GravityCompat.START, 15);
+        drawerLayout.setViewScale(GravityCompat.START, 0.9f);
+        drawerLayout.setViewElevation(GravityCompat.START, 20);
+        drawerLayout.setViewScrimColor(GravityCompat.START, Color.TRANSPARENT);
+        drawerLayout.setContrastThreshold(3);
 
         navigationView = findViewById(R.id.navigationView);
 
@@ -93,14 +114,6 @@ public class MainActivity extends AppCompatActivity{
             return true;
         });
 
-        sharedPreferences = getSharedPreferences("FootPrints_Data", MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-        Switch switchButton = navigationView.getHeaderView(0).findViewById(R.id.switch_dark);
-
-        switchButton.setChecked(isDarkThemeOn());
-        switchButton.setOnCheckedChangeListener((compoundButton, b) -> {
-            changeAppTheme(!b);
-        });
     }
 
     private void changeAppTheme(boolean isChecked){
@@ -115,7 +128,6 @@ public class MainActivity extends AppCompatActivity{
             finish();
             startActivity(i);
         }
-//        editor.putBoolean("DarkMode", !isChecked).apply();
     }
 
     private boolean isDarkThemeOn(){
@@ -159,35 +171,6 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
-    public void report() {
-        final LayoutInflater li = LayoutInflater.from(MainActivity.this);
-        final View promptsView = li.inflate(R.layout.dialog_report_bug, null);
-
-        final EditText etReport = promptsView.findViewById(R.id.etReportDescription);
-
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
-        alertDialogBuilder.setView(promptsView);
-        alertDialogBuilder.setCancelable(false).setPositiveButton("Send", (dialog, id) -> {
-        }).setNegativeButton("Cancel", (dialog, id) -> dialog.cancel());
-
-        alertDialogBuilder.setTitle("Please tell me about issue!");
-        final AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-
-        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
-            final String reportText = String.valueOf(etReport.getText()).trim();
-            if (TextUtils.isEmpty(reportText)) {
-                Toast.makeText(getApplicationContext(), "Please write few words!", Toast.LENGTH_SHORT).show();
-            } else {
-                Map<String, Object> bugs = new HashMap<>();
-                bugs.put("Description", reportText);
-                FirebaseFirestore.getInstance().collection("Bugs").document(UUID.randomUUID().toString()).set(bugs);
-                Toast.makeText(getApplicationContext(), "Your report were submitted", Toast.LENGTH_SHORT).show();
-                alertDialog.dismiss();
-            }
-        });
-    }
-
     public void share(){
         ApplicationInfo api = getApplicationContext().getApplicationInfo();
         String apkpath = api.sourceDir;
@@ -199,5 +182,27 @@ public class MainActivity extends AppCompatActivity{
 
         intent.putExtra(Intent.EXTRA_STREAM, uri);
         startActivity(Intent.createChooser(intent, "Share App Using"));
+    }
+
+    public void report_details() {
+        submit = popup.findViewById(R.id.submit);
+
+        submit.setOnClickListener(v -> {
+            report_text = popup.findViewById(R.id.etReportDescription);
+            final String reportText = String.valueOf(report_text.getText()).trim();
+            if (TextUtils.isEmpty(reportText)) {
+                Toast.makeText(getApplicationContext(), "Please write few words!", Toast.LENGTH_SHORT).show();
+            } else {
+                Map<String, Object> bugs = new HashMap<>();
+                bugs.put("Description", reportText);
+                FirebaseFirestore.getInstance().collection("Bugs").document(UUID.randomUUID().toString()).set(bugs);
+                Toast.makeText(getApplicationContext(), "Your report were submitted", Toast.LENGTH_SHORT).show();
+                popup.dismiss();
+            }
+        });
+    }
+
+    public void report_popup() {
+        popup = QuickPopupBuilder.with(this).contentView(R.layout.dialog_report_bug).config(new QuickPopupConfig().withShowAnimation(AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER).toShow()).withDismissAnimation(AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER).toDismiss()).withClick(R.id.dismiss, null, true).blurBackground(true).outSideDismiss(false)).show();
     }
 }

@@ -21,7 +21,8 @@
 <!--            android:title="Share"-->
 <!--            android:icon="@drawable/ic_share"/>-->
     </group>
-    <item android:title="Communicate">
+    <item android:title="Communicate"
+        android:iconTint="@color/white">
         <menu>
     <group
         android:id="@+id/g2"

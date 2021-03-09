@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,7 +47,7 @@ public class SponsorsFragment extends Fragment {
         MainActivity.titles.setText("Sponsors");
 
         recyclerView = view.findViewById(R.id.sponsor_rv);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         Query query = firebaseFirestore.collection("Sponsors");

@@ -69,7 +69,9 @@ public class EventAdapter extends FirestoreRecyclerAdapter<Event, EventAdapter.V
         holder.event_card.setOnClickListener(v -> {
             String path = this.getSnapshots().getSnapshot(position).getReference().getPath();
             Intent intent;
-            if (model.isCategory()) {
+            if(model.getSummary().contains("Concert")) {
+                intent = new Intent(context, RollingSquaresFragment.class);
+            } else if (model.isCategory()) {
                 intent = new Intent(context, EventCategoryActivity.class);
             } else {
                 intent = new Intent(context, EventDetailsActivity.class);

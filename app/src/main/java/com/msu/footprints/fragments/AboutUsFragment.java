@@ -1,5 +1,6 @@
 package com.msu.footprints.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -59,6 +60,8 @@ public class AboutUsFragment extends Fragment {
         adapter = new AboutAdapter(getContext(), options);
         firestoreRecyclerAdapter = adapter;
         recyclerView.setAdapter(firestoreRecyclerAdapter);
+
+        startActivity(new Intent(getActivity(),ImageSlider.class));
     }
 
     @Override

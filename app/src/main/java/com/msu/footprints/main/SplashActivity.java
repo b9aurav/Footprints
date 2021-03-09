@@ -16,15 +16,6 @@ public class SplashActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-
-//        SharedPreferences sharedPreferences = getSharedPreferences("FootPrints_Data", MODE_PRIVATE);
-//        boolean darkMode = sharedPreferences.getBoolean("DarkMode", false);
-//        if (!darkMode) {
-//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-//        } else {
-//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-//        }
-
         setContentView(R.layout.activity_slpash);
 
         svgLoader = findViewById(R.id.loading);
