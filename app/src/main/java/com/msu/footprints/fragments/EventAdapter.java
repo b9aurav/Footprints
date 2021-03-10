@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.msu.footprints.R;
+import com.msu.footprints.main.AssemblyEventActivity;
 import com.msu.footprints.main.EventCategoryActivity;
 import com.msu.footprints.main.EventDetailsActivity;
 import com.msu.footprints.models.Event;
@@ -71,7 +72,10 @@ public class EventAdapter extends FirestoreRecyclerAdapter<Event, EventAdapter.V
             Intent intent;
             if(model.getSummary().contains("Concert")) {
                 intent = new Intent(context, RollingSquaresFragment.class);
-            } else if (model.isCategory()) {
+            } else if(model.isAssembly()){
+                intent = new Intent(context, AssemblyEventActivity.class);
+            }
+            else if (model.isCategory()) {
                 intent = new Intent(context, EventCategoryActivity.class);
             } else {
                 intent = new Intent(context, EventDetailsActivity.class);

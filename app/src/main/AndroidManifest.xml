@@ -12,13 +12,17 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.Footprints">
-        <activity android:name=".fragments.RollingSquaresFragment"
-            android:screenOrientation="portrait"></activity>
+        <activity android:name=".main.AssemblyEventActivity"></activity>
+        <activity android:name=".main.AssemblyEventActivity" />
+        <activity
+            android:name=".fragments.RollingSquaresFragment"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".main.EventCategoryActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".main.EventDetailsActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".main.EventDetailsActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".main.SplashActivity"
             android:screenOrientation="portrait">
@@ -28,8 +32,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.MainActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".main.MainActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".fragments.ImageSlider" />
 
         <service android:name=".main.FirebaseMessageReceiver">

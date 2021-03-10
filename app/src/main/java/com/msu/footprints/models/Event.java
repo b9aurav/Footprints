@@ -8,9 +8,9 @@ public class Event implements Serializable{
     private String Provide, Instruction, GenInstruction, Criteria, Specification, Presentation, Abstract, Submission, Requirements;
     private String Fees, RegisterLink, ImageURL, TeamSize;
     private String docURL;
-    private boolean Category, RuleRound, current;
+    private boolean Category, RuleRound, current = false, assembly = false;
 
-    private  String  highlights, schedule, prerequistes, dateTime, problem;
+    private String highlights, schedule, prerequistes, dateTime, problem;
 
     public Event(){
     }
@@ -244,5 +244,13 @@ public class Event implements Serializable{
 
     public void setCurrent(boolean current){
         this.current = current;
+    }
+
+    public boolean isAssembly(){
+        return assembly;
+    }
+
+    public void setAssembly(boolean assembly){
+        this.assembly = assembly;
     }
 }

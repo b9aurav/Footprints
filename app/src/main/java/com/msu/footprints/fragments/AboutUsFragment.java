@@ -61,7 +61,7 @@ public class AboutUsFragment extends Fragment {
         firestoreRecyclerAdapter = adapter;
         recyclerView.setAdapter(firestoreRecyclerAdapter);
 
-        startActivity(new Intent(getActivity(),ImageSlider.class));
+//        startActivity(new Intent(getActivity(),ImageSlider.class));
     }
 
     @Override
