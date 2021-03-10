@@ -285,4 +285,17 @@
         android:backgroundTintMode="add"
         android:src="@drawable/help"
         app:backgroundTint="@color/orange_logo" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/abstractBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTintMode="add"
+        android:src="@drawable/download"
+        android:visibility="invisible"
+        app:backgroundTint="@color/orange_logo" />
 </RelativeLayout>
