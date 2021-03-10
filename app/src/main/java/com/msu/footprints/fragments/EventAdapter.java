@@ -2,7 +2,6 @@ package com.msu.footprints.fragments;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -71,7 +69,7 @@ public class EventAdapter extends FirestoreRecyclerAdapter<Event, EventAdapter.V
             String path = this.getSnapshots().getSnapshot(position).getReference().getPath();
             Intent intent;
             if(model.getSummary().contains("Concert")) {
-                intent = new Intent(context, RollingSquaresFragment.class);
+                intent = new Intent(context, RollingSquares.class);
             } else if(model.isAssembly()){
                 intent = new Intent(context, AssemblyEventActivity.class);
             }

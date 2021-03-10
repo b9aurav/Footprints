@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,6 +37,18 @@ public class AssemblyEventAdapter extends FirestoreRecyclerAdapter<Event, Assemb
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View listItem = layoutInflater.inflate(R.layout.layout_assembly_event, parent, false);
         return new ViewHolder(listItem);
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(@NonNull AssemblyEventAdapter.ViewHolder holder){
+        super.onViewDetachedFromWindow(holder);
+        holder.event_card.clearAnimation();
+    }
+
+    @Override
+    public void onViewAttachedToWindow(@NonNull AssemblyEventAdapter.ViewHolder holder){
+        super.onViewAttachedToWindow(holder);
+        setScaleAnimation(holder.event_card);
     }
 
     @Override
@@ -86,6 +100,12 @@ public class AssemblyEventAdapter extends FirestoreRecyclerAdapter<Event, Assemb
                 context.startActivity(intent);
             }
         });
+    }
+
+    private void setScaleAnimation(View view){
+        ScaleAnimation anim = new ScaleAnimation(0.6f, 1.0f, 0.6f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        anim.setDuration(700);
+        view.startAnimation(anim);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

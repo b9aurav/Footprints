@@ -55,7 +55,7 @@ import razerdp.widget.QuickPopup;
 public class MainActivity extends AppCompatActivity{
 
     public static AwesomeBar toolbar;
-    Advance3DDrawerLayout drawerLayout;
+    AdvanceDrawerLayout drawerLayout;
     NavigationView navigationView;
     public static TextView titles;
 
@@ -97,8 +97,7 @@ public class MainActivity extends AppCompatActivity{
             report_details();
         });
 
-        drawerLayout.setViewRotation(GravityCompat.START, 15);
-        drawerLayout.setViewScale(GravityCompat.START, 0.9f);
+        drawerLayout.setViewScale(GravityCompat.START, 0.8f);
         drawerLayout.setViewElevation(GravityCompat.START, 20);
         drawerLayout.setViewScrimColor(GravityCompat.START, Color.TRANSPARENT);
         drawerLayout.setContrastThreshold(3);

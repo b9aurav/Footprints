@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.infideap.drawerbehavior.Advance3DDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.infideap.drawerbehavior.AdvanceDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerLayout"
@@ -30,7 +30,7 @@
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationView"
-            android:layout_width="wrap_content"
+            android:layout_width="230dp"
             android:layout_height="match_parent"
             app:itemShapeFillColor="#000C0C0C"
             android:background="#222222"
@@ -42,4 +42,4 @@
             app:headerLayout="@layout/drawer_header"
             app:menu="@menu/drawer_menu_items" />
 
-</com.infideap.drawerbehavior.Advance3DDrawerLayout>
+</com.infideap.drawerbehavior.AdvanceDrawerLayout>
