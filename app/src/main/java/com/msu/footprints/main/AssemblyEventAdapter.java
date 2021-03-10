@@ -39,6 +39,11 @@ public class AssemblyEventAdapter extends FirestoreRecyclerAdapter<Event, Assemb
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Event model){
+
+        if (title.toLowerCase().equals("guest lectures") && model.isCurrent()){
+            holder.description.setVisibility(View.GONE);
+        }
+
 //        holder.title.setSelected(true);
 //        holder.summary.setSelected(true);
         holder.tvTitle.setText(model.getTitle());
@@ -50,12 +55,36 @@ public class AssemblyEventAdapter extends FirestoreRecyclerAdapter<Event, Assemb
                 .into(holder.banner);
 
         holder.event_card.setOnClickListener(v -> {
-            String path = this.getSnapshots().getSnapshot(position).getReference().getPath();
-            Intent intent;
-            intent = new Intent(context, EventDetailsActivity.class);
-            intent.putExtra("Path", path);
-            intent.putExtra("Title", model.getTitle());
-            context.startActivity(intent);
+            if (title.toLowerCase().equals("workshops") && model.isCurrent()) {
+                String path = this.getSnapshots().getSnapshot(position).getReference().getPath();
+                Intent intent;
+                intent = new Intent(context, EventDetailsActivity.class);
+                intent.putExtra("Type", 1);
+                intent.putExtra("Path", path);
+                intent.putExtra("Title", model.getTitle());
+                intent.putExtra("Fees", model.getFees());
+                intent.putExtra("RegisterLink", model.getRegisterLink());
+                intent.putExtra("TeamSize", model.getTeamSize());
+                intent.putExtra("dateTime", model.getDateTime());
+                intent.putExtra("highlights", model.getHighlights());
+                intent.putExtra("docURL", model.getDocURL());
+                intent.putExtra("prerequistes", model.getPrerequistes());
+                intent.putExtra("schedule", model.getSchedule());
+                intent.putExtra("problem", model.getProblem());
+                context.startActivity(intent);
+            }
+            else if (title.toLowerCase().equals("guest lectures") && model.isCurrent()) {
+                String path = this.getSnapshots().getSnapshot(position).getReference().getPath();
+                Intent intent;
+                intent = new Intent(context, EventDetailsActivity.class);
+                intent.putExtra("Type", 2);
+                intent.putExtra("Guest", model.getTitle());
+                intent.putExtra("Description", model.getDescription());
+                intent.putExtra("Title", title);
+                intent.putExtra("RegisterLink", model.getRegisterLink());
+                intent.putExtra("dateTime", model.getDateTime());
+                context.startActivity(intent);
+            }
         });
     }
 
