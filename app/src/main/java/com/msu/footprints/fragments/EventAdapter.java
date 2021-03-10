@@ -24,10 +24,17 @@ import com.msu.footprints.main.EventCategoryActivity;
 import com.msu.footprints.main.EventDetailsActivity;
 import com.msu.footprints.models.Event;
 
+import razerdp.basepopup.QuickPopupBuilder;
+import razerdp.basepopup.QuickPopupConfig;
+import razerdp.util.animation.AnimationHelper;
+import razerdp.util.animation.ScaleConfig;
+import razerdp.widget.QuickPopup;
+
 public class EventAdapter extends FirestoreRecyclerAdapter<Event, EventAdapter.ViewHolder>{
 
     private Context context;
     private int lastPosition = -1;
+    QuickPopup popup;
 
     public EventAdapter(Context context, FirestoreRecyclerOptions<Event> options){
         super(options);
@@ -68,7 +75,11 @@ public class EventAdapter extends FirestoreRecyclerAdapter<Event, EventAdapter.V
         holder.event_card.setOnClickListener(v -> {
             String path = this.getSnapshots().getSnapshot(position).getReference().getPath();
             Intent intent;
-            if(model.getSummary().contains("Concert")) {
+            if(model.getTitle().contains("Social Responsibility")) {
+                intent = new Intent(context, Social_responsibility.class);
+            } else if(model.getTitle().contains("Schitron")) {
+                intent = new Intent(context, Social_responsibility.class);
+            } else if(model.getSummary().contains("Concert")) {
                 intent = new Intent(context, RollingSquares.class);
             } else if(model.isAssembly()){
                 intent = new Intent(context, AssemblyEventActivity.class);
@@ -84,15 +95,23 @@ public class EventAdapter extends FirestoreRecyclerAdapter<Event, EventAdapter.V
         });
 
         holder.event_card.setOnLongClickListener(view -> {
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-            alertDialogBuilder.setTitle(model.getTitle());
-            alertDialogBuilder.setMessage(model.getDescription());
-            alertDialogBuilder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
-
-            AlertDialog alertDialog = alertDialogBuilder.create();
-            alertDialog.show();
+            if(!(model.getTitle().equals("Guest Lectures") || model.getTitle().equals("Workshops") || model.getTitle().equals("Techzibitions"))) {
+                longclick_popup();
+                TextView tvTitle = popup.findViewById(R.id.tvTitle);
+                TextView tvDescription = popup.findViewById(R.id.tvDescription);
+                tvTitle.setText(model.getTitle());
+                tvDescription.setText(model.getDescription());
+            }
             return true;
         });
+    }
+
+    public void longclick_popup(){
+        popup = QuickPopupBuilder.with(context)
+                .contentView(R.layout.longclick_popup)
+                .config(new QuickPopupConfig().withShowAnimation(AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER).toShow())
+                        .withDismissAnimation(AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER).toDismiss())
+                        .withClick(R.id.dismiss, null, true).blurBackground(true).outSideDismiss(false)).show();
     }
 
     private void setScaleAnimation(View view){

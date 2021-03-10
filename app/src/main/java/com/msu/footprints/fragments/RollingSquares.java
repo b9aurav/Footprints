@@ -12,13 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.github.florent37.awesomebar.AwesomeBar;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.msu.footprints.R;
-import com.msu.footprints.main.AssemblyEventActivity;
-import com.msu.footprints.main.AssemblyEventAdapter;
-import com.msu.footprints.main.RollingSquaresAdapter;
 import com.msu.footprints.models.Event;
 
 public class RollingSquares extends AppCompatActivity {
@@ -26,7 +22,7 @@ public class RollingSquares extends AppCompatActivity {
     FirebaseFirestore firebaseFirestore;
     String path, title;
 
-    TextView Description, tvPrevious;
+    TextView tvPrevious;
     AwesomeBar toolbar;
     TextView titles;
     RecyclerView recyclerView1, recyclerView2;
@@ -47,17 +43,9 @@ public class RollingSquares extends AppCompatActivity {
         tvPrevious = findViewById(R.id.tvPrevious);
         titles.setText(title);
         tvPrevious.setText("Previous Concerts");
-        Description = findViewById(R.id.tvDescription);
         recyclerView1 = findViewById(R.id.recyclerview1);
         recyclerView2 = findViewById(R.id.recyclerview2);
         firebaseFirestore = FirebaseFirestore.getInstance();
-
-        firebaseFirestore.document(path).get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
-                Description.setText(document.getString("Description"));
-            }
-        });
 
         recyclerView1.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 

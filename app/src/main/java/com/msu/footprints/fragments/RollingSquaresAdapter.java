@@ -1,14 +1,12 @@
-package com.msu.footprints.main;
+package com.msu.footprints.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -18,8 +16,6 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.msu.footprints.R;
-import com.msu.footprints.fragments.EventAdapter;
-import com.msu.footprints.fragments.RollingSquares;
 import com.msu.footprints.models.Event;
 
 public class RollingSquaresAdapter extends FirestoreRecyclerAdapter<Event, RollingSquaresAdapter.ViewHolder>{

@@ -12,7 +12,14 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.Footprints">
-        <activity android:name=".main.AssemblyEventActivity"></activity>
+        <service
+            android:name=".fragments.SliderService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name=".fragments.SliderAdapter" />
+        <activity android:name=".fragments.Social_responsibility" />
+        <activity android:name=".main.AssemblyEventActivity" />
         <activity android:name=".main.AssemblyEventActivity" />
         <activity
             android:name=".fragments.RollingSquares"

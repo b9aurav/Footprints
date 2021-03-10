@@ -20,10 +20,17 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.msu.footprints.R;
 import com.msu.footprints.models.Event;
 
+import razerdp.basepopup.QuickPopupBuilder;
+import razerdp.basepopup.QuickPopupConfig;
+import razerdp.util.animation.AnimationHelper;
+import razerdp.util.animation.ScaleConfig;
+import razerdp.widget.QuickPopup;
+
 public class AssemblyEventAdapter extends FirestoreRecyclerAdapter<Event, AssemblyEventAdapter.ViewHolder>{
 
     Context context;
     String title;
+    QuickPopup popup;
 
     public AssemblyEventAdapter(Context context, @NonNull FirestoreRecyclerOptions<Event> options, String title){
         super(options);
