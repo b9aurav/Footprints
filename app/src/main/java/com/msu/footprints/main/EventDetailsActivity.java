@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import com.github.florent37.awesomebar.AwesomeBar;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -448,8 +449,7 @@ public class EventDetailsActivity extends AppCompatActivity{
                 int lenghtOfFile = connection.getContentLength();
 
                 // download the file
-                InputStream input = new BufferedInputStream(url.openStream(),
-                        8192);
+                InputStream input = new BufferedInputStream(url.openStream(), 8192);
 
                 // Output stream
                 String fullPath = Environment.getExternalStorageDirectory().toString() + "/Download/" + filename + "." + fileType;
@@ -477,17 +477,27 @@ public class EventDetailsActivity extends AppCompatActivity{
                 input.close();
 
                 File file = new File(fullPath);
-                Intent target = new Intent(Intent.ACTION_VIEW);
-                String type;
-                if (fileType == "docx") {
-                    type = "doc";
-                } else {
-                    type = "pdf";
-                }
-                target.setDataAndType(Uri.fromFile(file), "application/" + type);
-                target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+//                Intent target = new Intent(Intent.ACTION_VIEW);
+//                String type;
+//                if (fileType == "docx") {
+//                    type = "doc";
+//                } else {
+//                    type = "pdf";
+//                }
+//                Log.d("Tushar", "doInBackground: "+file.getAbsolutePath());
+//                target.setDataAndType(Uri.fromFile(file), "application/" + type);
+//                target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+//
+//                Intent intent = Intent.createChooser(target, "Open File");
 
-                Intent intent = Intent.createChooser(target, "Open File");
+
+                // Open file with user selected app
+                final Uri uri = FileProvider.getUriForFile(getApplicationContext(), "com.msu.footprints.fileprovider", file);
+                grantUriPermission(getApplicationContext().getPackageName(), uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                final Intent intent = new Intent(Intent.ACTION_VIEW)
+                        .setDataAndType(uri, "application/" + (fileType.equals("docx") ? "msword" : fileType))
+                        .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                startActivity(intent);
                 try {
                     startActivity(intent);
                 } catch (Exception e) {
