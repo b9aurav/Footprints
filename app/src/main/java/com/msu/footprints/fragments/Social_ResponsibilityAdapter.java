@@ -71,7 +71,7 @@ public class Social_ResponsibilityAdapter extends FirestoreRecyclerAdapter<Event
                         String url =  document.getString("ImageURL");
                         list.add(url);
                     }
-                    holder.slider.setAdapter(new SliderAda(list, list.size()));
+                    holder.slider.setAdapter(new SliderAdapter(list, list.size()));
                 }
             });
         }
@@ -88,7 +88,7 @@ public class Social_ResponsibilityAdapter extends FirestoreRecyclerAdapter<Event
                         String url =  document.getString("ImageURL");
                         list.add(url);
                     }
-                    holder.slider.setAdapter(new SliderAda(list, list.size()));
+                    holder.slider.setAdapter(new SliderAdapter(list, list.size()));
                 }
             });
         }

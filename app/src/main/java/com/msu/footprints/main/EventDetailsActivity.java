@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -75,143 +74,206 @@ public class EventDetailsActivity extends AppCompatActivity{
 
         init();
 
-        firebaseFirestore.document(path).get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
+        int type = intent.getIntExtra("Type", 0);
 
-                event.setTitle(title);
-                event.setDescription(document.getString("Description"));
-                event.setSummary(document.getString("Summary"));
-                event.setRules(document.getString("Rules"));
-                event.setRounds(document.getString("Rounds"));
-                event.setRuleRound(document.getBoolean("RuleRound") != null);
-                event.setFees(document.getString("Fees"));
-                event.setTeamSize(document.getString("TeamSize"));
-                event.setRegisterLink(document.getString("RegisterLink"));
-                event.setDocURL(document.getString("docURL"));
+        if (type == 0) {
+            firebaseFirestore.document(path).get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
 
-                event.setAbstract(document.getString("Abstract"));
-                event.setSpecification(document.getString("Specification"));
-                event.setInstruction(document.getString("Instruction"));
-                event.setGenInstruction(document.getString("GenInstruction"));
-                event.setCriteria(document.getString("Criteria"));
-                event.setProvide(document.getString("Provide"));
-                event.setPresentation(document.getString("Presentation"));
-                event.setSubmission(document.getString("Submission"));
-                event.setRequirements(document.getString("Requirements"));
+                    event.setTitle(title);
+                    event.setDescription(document.getString("Description"));
+                    event.setSummary(document.getString("Summary"));
+                    event.setRules(document.getString("Rules"));
+                    event.setRounds(document.getString("Rounds"));
+                    event.setRuleRound(document.getBoolean("RuleRound") != null);
+                    event.setFees(document.getString("Fees"));
+                    event.setTeamSize(document.getString("TeamSize"));
+                    event.setRegisterLink(document.getString("RegisterLink"));
+                    event.setDocURL(document.getString("docURL"));
 
-                if (event.getDocURL() != null) {
-                    abstractBtn.setVisibility(View.VISIBLE);
-                    abstractUrl = event.getDocURL();
-                    filename = event.getTitle();
-                    int index = abstractUrl.indexOf("docx");
-                    if (index == -1) {
-                        fileType = "pdf";
-                    } else {
-                        fileType = "docx";
+                    event.setAbstract(document.getString("Abstract"));
+                    event.setSpecification(document.getString("Specification"));
+                    event.setInstruction(document.getString("Instruction"));
+                    event.setGenInstruction(document.getString("GenInstruction"));
+                    event.setCriteria(document.getString("Criteria"));
+                    event.setProvide(document.getString("Provide"));
+                    event.setPresentation(document.getString("Presentation"));
+                    event.setSubmission(document.getString("Submission"));
+                    event.setRequirements(document.getString("Requirements"));
+
+                    if (event.getDocURL() != null) {
+                        abstractBtn.setVisibility(View.VISIBLE);
+                        abstractUrl = event.getDocURL();
+                        filename = event.getTitle();
+                        int index = abstractUrl.indexOf("docx");
+                        if (index == -1) {
+                            fileType = "pdf";
+                        } else {
+                            fileType = "docx";
+                        }
                     }
-                    Log.d("Tushar", "onCreate: " + fileType);
+
+                    if (document.getBoolean("Temp") != null) {
+                        Toast.makeText(getApplicationContext(), "In Developing...", Toast.LENGTH_LONG).show();
+                    }
+
+                    tvDescription.setText(event.getDescription().replace("\\n", "\n"));
+                    if (event.getFees() != null) {
+                        tvFeeDes.setText(event.getFees());
+                        tvFee.setVisibility(View.VISIBLE);
+                        tvFeeDes.setVisibility(View.VISIBLE);
+                    }
+
+                    if (event.getTeamSize() != null) {
+                        tvTeamSizeDes.setText(event.getTeamSize());
+                        tvTeamSize.setVisibility(View.VISIBLE);
+                        tvTeamSizeDes.setVisibility(View.VISIBLE);
+                    }
+
+                    if (event.isRuleRound()) {
+                        tvRule.setText("Rules for Round 1");
+                        tvRound.setText("Rules for Round 2");
+                    }
+                    if (event.getRules() != null) {
+                        tvRuleDes.setText(event.getRules().replace("\\n", "\n"));
+                        tvRule.setVisibility(View.VISIBLE);
+                        tvRuleDes.setVisibility(View.VISIBLE);
+                    }
+                    if (event.getRounds() != null) {
+                        tvRoundDes.setText(event.getRounds().replace("\\n", "\n"));
+                        tvRound.setVisibility(View.VISIBLE);
+                        tvRoundDes.setVisibility(View.VISIBLE);
+                    }
+
+                    if (event.getSpecification() != null) {
+                        tvSpecificationDes.setText(event.getSpecification().replace("\\n", "\n"));
+                        tvSpecification.setVisibility(View.VISIBLE);
+                        tvSpecificationDes.setVisibility(View.VISIBLE);
+                    }
+
+                    if (event.getInstruction() != null) {
+                        tvInstructionDes.setText(event.getInstruction().replace("\\n", "\n"));
+                        tvInstruction.setVisibility(View.VISIBLE);
+                        tvInstructionDes.setVisibility(View.VISIBLE);
+                    }
+
+                    if (event.getGenInstruction() != null) {
+                        tvGenInstructionDes.setText(event.getGenInstruction().replace("\\n", "\n"));
+                        tvGenInstruction.setVisibility(View.VISIBLE);
+                        tvGenInstructionDes.setVisibility(View.VISIBLE);
+                    }
+
+                    if (event.getCriteria() != null) {
+                        tvCriteriaDes.setText(event.getCriteria().replace("\\n", "\n"));
+                        tvCriteriaDes.setVisibility(View.VISIBLE);
+                        tvCriteria.setVisibility(View.VISIBLE);
+                    }
+
+                    if (event.getAbstract() != null) {
+                        tvAbstractDes.setText(event.getAbstract().replace("\\n", "\n"));
+                        tvAbstractDes.setVisibility(View.VISIBLE);
+                        tvAbstract.setVisibility(View.VISIBLE);
+                    }
+
+                    if (event.getSubmission() != null) {
+                        tvSubmissionDes.setText(event.getSubmission().replace("\\n", "\n"));
+                        tvSubmissionDes.setVisibility(View.VISIBLE);
+                        tvSubmission.setVisibility(View.VISIBLE);
+                    }
+
+                    if (event.getProvide() != null) {
+                        tvProvideDes.setText(event.getProvide().replace("\\n", "\n"));
+                        tvProvide.setVisibility(View.VISIBLE);
+                        tvProvideDes.setVisibility(View.VISIBLE);
+                    }
+
+                    if (event.getRequirements() != null) {
+                        tvRequirementsDes.setText(event.getRequirements().replace("\\n", "\n"));
+                        tvRequirements.setVisibility(View.VISIBLE);
+                        tvRequirementsDes.setVisibility(View.VISIBLE);
+                    }
+
+                    if (event.getPresentation() != null) {
+                        tvPresentationDes.setText(event.getPresentation().replace("\\n", "\n"));
+                        tvPresentation.setVisibility(View.VISIBLE);
+                        tvPresentationDes.setVisibility(View.VISIBLE);
+                    }
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
                 }
 
-                if (document.getBoolean("Temp") != null) {
-                    Toast.makeText(getApplicationContext(), "In Developing...", Toast.LENGTH_LONG).show();
+            });
+        } else if (type == 1) {
+            if (intent.getStringExtra("docURL") != null) {
+                abstractBtn.setVisibility(View.VISIBLE);
+                abstractUrl = intent.getStringExtra("docURL");
+                filename = intent.getStringExtra("Title");
+                int index = abstractUrl.indexOf("docx");
+                if (index == -1) {
+                    fileType = "pdf";
+                } else {
+                    fileType = "docx";
                 }
-
-                tvDescription.setText(event.getDescription().replace("\\n", "\n"));
-                if (event.getFees() != null) {
-                    tvFeeDes.setText(event.getFees());
-                    tvFee.setVisibility(View.VISIBLE);
-                    tvFeeDes.setVisibility(View.VISIBLE);
-                }
-
-                if (event.getTeamSize() != null) {
-                    tvTeamSizeDes.setText(event.getTeamSize());
-                    tvTeamSize.setVisibility(View.VISIBLE);
-                    tvTeamSizeDes.setVisibility(View.VISIBLE);
-                }
-
-                if (event.isRuleRound()) {
-                    tvRule.setText("Rules for Round 1");
-                    tvRound.setText("Rules for Round 2");
-                }
-                if (event.getRules() != null) {
-                    tvRuleDes.setText(event.getRules().replace("\\n", "\n"));
-                    tvRule.setVisibility(View.VISIBLE);
-                    tvRuleDes.setVisibility(View.VISIBLE);
-                }
-                if (event.getRounds() != null) {
-                    tvRoundDes.setText(event.getRounds().replace("\\n", "\n"));
-                    tvRound.setVisibility(View.VISIBLE);
-                    tvRoundDes.setVisibility(View.VISIBLE);
-                }
-
-                if (event.getSpecification() != null) {
-                    tvSpecificationDes.setText(event.getSpecification().replace("\\n", "\n"));
-                    tvSpecification.setVisibility(View.VISIBLE);
-                    tvSpecificationDes.setVisibility(View.VISIBLE);
-                }
-
-                if (event.getInstruction() != null) {
-                    tvInstructionDes.setText(event.getInstruction().replace("\\n", "\n"));
-                    tvInstruction.setVisibility(View.VISIBLE);
-                    tvInstructionDes.setVisibility(View.VISIBLE);
-                }
-
-                if (event.getGenInstruction() != null) {
-                    tvGenInstructionDes.setText(event.getGenInstruction().replace("\\n", "\n"));
-                    tvGenInstruction.setVisibility(View.VISIBLE);
-                    tvGenInstructionDes.setVisibility(View.VISIBLE);
-                }
-
-                if (event.getCriteria() != null) {
-                    tvCriteriaDes.setText(event.getCriteria().replace("\\n", "\n"));
-                    tvCriteriaDes.setVisibility(View.VISIBLE);
-                    tvCriteria.setVisibility(View.VISIBLE);
-                }
-
-                if (event.getAbstract() != null) {
-                    tvAbstractDes.setText(event.getAbstract().replace("\\n", "\n"));
-                    tvAbstractDes.setVisibility(View.VISIBLE);
-                    tvAbstract.setVisibility(View.VISIBLE);
-                }
-
-                if (event.getSubmission() != null) {
-                    tvSubmissionDes.setText(event.getSubmission().replace("\\n", "\n"));
-                    tvSubmissionDes.setVisibility(View.VISIBLE);
-                    tvSubmission.setVisibility(View.VISIBLE);
-                }
-
-                if (event.getProvide() != null) {
-                    tvProvideDes.setText(event.getProvide().replace("\\n", "\n"));
-                    tvProvide.setVisibility(View.VISIBLE);
-                    tvProvideDes.setVisibility(View.VISIBLE);
-                }
-
-                if (event.getRequirements() != null) {
-                    tvRequirementsDes.setText(event.getRequirements().replace("\\n", "\n"));
-                    tvRequirements.setVisibility(View.VISIBLE);
-                    tvRequirementsDes.setVisibility(View.VISIBLE);
-                }
-
-                if (event.getPresentation() != null) {
-                    tvPresentationDes.setText(event.getPresentation().replace("\\n", "\n"));
-                    tvPresentation.setVisibility(View.VISIBLE);
-                    tvPresentationDes.setVisibility(View.VISIBLE);
-                }
-
-            } else {
-                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
             }
+            tvDescription.setText(intent.getStringExtra("problem").replace("\\n", "\n"));
+            tvDescription.setVisibility(View.VISIBLE);
 
-        });
+            tvRule.setText("Highlights of Workshop");
+            tvRule.setVisibility(View.VISIBLE);
+            tvRuleDes.setText(intent.getStringExtra("highlights").replace("\\n", "\n"));
+            tvRuleDes.setVisibility(View.VISIBLE);
+
+            tvRound.setText("Prerequistes");
+            tvRound.setVisibility(View.VISIBLE);
+            tvRoundDes.setText(intent.getStringExtra("prerequistes").replace("\\n", "\n"));
+            tvRoundDes.setVisibility(View.VISIBLE);
+
+            tvSpecification.setText("Schedule");
+            tvSpecification.setVisibility(View.VISIBLE);
+            tvSpecificationDes.setText(intent.getStringExtra("schedule").replace("\\n", "\n"));
+            tvSpecificationDes.setVisibility(View.VISIBLE);
+
+            tvFeeDes.setText(intent.getStringExtra("Fees"));
+            tvFee.setVisibility(View.VISIBLE);
+            tvFeeDes.setVisibility(View.VISIBLE);
+
+            tvTeamSizeDes.setText(intent.getStringExtra("TeamSize"));
+            tvTeamSize.setVisibility(View.VISIBLE);
+            tvTeamSizeDes.setVisibility(View.VISIBLE);
+
+        } else if (type == 2) {
+            findViewById(R.id.fabIncharge).setVisibility(View.GONE);
+
+            tvProblem.setText("Guest");
+            tvDescription.setText(intent.getStringExtra("Guest"));
+            tvDescription.setVisibility(View.VISIBLE);
+
+            tvRule.setText("About Guest");
+            tvRule.setVisibility(View.VISIBLE);
+            tvRuleDes.setText(intent.getStringExtra("Description"));
+            tvRuleDes.setVisibility(View.VISIBLE);
+
+            tvRound.setText("Date & Time");
+            tvRound.setVisibility(View.VISIBLE);
+            tvRoundDes.setText(intent.getStringExtra("dateTime"));
+            tvRoundDes.setVisibility(View.VISIBLE);
+        }
 
         findViewById(R.id.fabRegister).setOnClickListener(view -> {
-            if (event.getRegisterLink() != null) {
+            if (type == 0) {
+                if (event.getRegisterLink() != null) {
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(event.getRegisterLink()));
+                    startActivity(i);
+                } else
+                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+            } else if (type == 1 || type == 2) {
                 Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(event.getRegisterLink()));
+                i.setData(Uri.parse(intent.getStringExtra("RegisterLink")));
                 startActivity(i);
-            } else
-                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+            }
         });
 
         findViewById(R.id.fabIncharge).setOnClickListener(v -> {
@@ -319,11 +381,13 @@ public class EventDetailsActivity extends AppCompatActivity{
                     tvVolEmail1.setText(documents.get(0).getString("Email"));
                     tvVolMob1.setText(documents.get(0).getString("Mob"));
                 }
-                if (documents.get(1) != null) {
-                    popup.findViewById(R.id.linearLayout2).setVisibility(View.VISIBLE);
-                    tvVol2.setText(documents.get(1).getString("Name"));
-                    tvVolEmail2.setText(documents.get(1).getString("Email"));
-                    tvVolMob2.setText(documents.get(1).getString("Mob"));
+                if (documents.size() == 2) {
+                    if (documents.get(1) != null) {
+                        popup.findViewById(R.id.linearLayout2).setVisibility(View.VISIBLE);
+                        tvVol2.setText(documents.get(1).getString("Name"));
+                        tvVolEmail2.setText(documents.get(1).getString("Email"));
+                        tvVolMob2.setText(documents.get(1).getString("Mob"));
+                    }
                 }
             }
         });

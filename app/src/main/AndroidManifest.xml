@@ -4,11 +4,13 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
@@ -16,11 +18,10 @@
         <service
             android:name=".fragments.SliderService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity android:name=".fragments.SliderAdapter" />
         <activity android:name=".fragments.Social_responsibility" />
-        <activity android:name=".main.AssemblyEventActivity" />
         <activity android:name=".main.AssemblyEventActivity" />
         <activity
             android:name=".fragments.RollingSquares"
@@ -43,7 +44,6 @@
         <activity
             android:name=".main.MainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".fragments.ImageSlider" />
 
         <service android:name=".main.FirebaseMessageReceiver">
             <intent-filter>
