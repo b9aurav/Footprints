@@ -1,38 +1,31 @@
 package com.msu.footprints.main;
 
-import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.PopupWindow;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.github.florent37.awesomebar.AwesomeBar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.infideap.drawerbehavior.Advance3DDrawerLayout;
 import com.infideap.drawerbehavior.AdvanceDrawerLayout;
 import com.msu.footprints.R;
 import com.msu.footprints.fragments.AboutUsFragment;
@@ -52,7 +45,11 @@ import razerdp.util.animation.AnimationHelper;
 import razerdp.util.animation.ScaleConfig;
 import razerdp.widget.QuickPopup;
 
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
 public class MainActivity extends AppCompatActivity{
+
+    private static int WRITE_EXTERNAL_STORAGE_REQUEST_CODE = 1;
 
     public static AwesomeBar toolbar;
     AdvanceDrawerLayout drawerLayout;
@@ -83,6 +80,7 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        checkPermission();
 
         drawerLayout = findViewById(R.id.drawerLayout);
         toolbar = findViewById(R.id.toolbar);
@@ -140,7 +138,7 @@ public class MainActivity extends AppCompatActivity{
         return false;
     }
 
-    public void navigation_listener(MenuItem item) {
+    public void navigation_listener(MenuItem item){
         switch (item.getItemId()) {
             case R.id.mHome:
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, new EventFragment()).commit();
@@ -183,7 +181,7 @@ public class MainActivity extends AppCompatActivity{
         startActivity(Intent.createChooser(intent, "Share App Using"));
     }
 
-    public void report_details() {
+    public void report_details(){
         submit = popup.findViewById(R.id.submit);
 
         submit.setOnClickListener(v -> {
@@ -201,7 +199,13 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
-    public void report_popup() {
+    public void report_popup(){
         popup = QuickPopupBuilder.with(this).contentView(R.layout.dialog_report_bug).config(new QuickPopupConfig().withShowAnimation(AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER).toShow()).withDismissAnimation(AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER).toDismiss()).withClick(R.id.dismiss, null, true).blurBackground(true).outSideDismiss(false)).show();
+    }
+
+    public void checkPermission(){
+        if (ContextCompat.checkSelfPermission(MainActivity.this, WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
+        }
     }
 }

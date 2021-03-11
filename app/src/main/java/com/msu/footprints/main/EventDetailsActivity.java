@@ -10,8 +10,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
-import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,7 +69,6 @@ public class EventDetailsActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details);
 
-
         Intent intent = getIntent();
         path = intent.getStringExtra("Path");
         title = intent.getStringExtra("Title");
@@ -106,11 +105,12 @@ public class EventDetailsActivity extends AppCompatActivity{
                     abstractUrl = event.getDocURL();
                     filename = event.getTitle();
                     int index = abstractUrl.indexOf("docx");
-                    if (index == -1){
+                    if (index == -1) {
                         fileType = "pdf";
                     } else {
                         fileType = "docx";
                     }
+                    Log.d("Tushar", "onCreate: " + fileType);
                 }
 
                 if (document.getBoolean("Temp") != null) {
@@ -228,7 +228,7 @@ public class EventDetailsActivity extends AppCompatActivity{
     }
 
     @Override
-    protected Dialog onCreateDialog(int id) {
+    protected Dialog onCreateDialog(int id){
         switch (id) {
             case 0: // we set this to 0
                 pDialog = new ProgressDialog(this);
@@ -350,7 +350,7 @@ public class EventDetailsActivity extends AppCompatActivity{
     }
 
     public void volunteer_popup(){
-        popup = QuickPopupBuilder.with((Context) this).contentView(R.layout.volunteer_popup).config(new QuickPopupConfig().withShowAnimation(((AnimationHelper.AnimationBuilder) AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER)).toShow()).withDismissAnimation(((AnimationHelper.AnimationBuilder) AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER)).toDismiss()).withClick(R.id.dismiss, (View.OnClickListener) null, true).blurBackground(true).outSideDismiss(false)).show();
+        popup = QuickPopupBuilder.with(this).contentView(R.layout.volunteer_popup).config(new QuickPopupConfig().withShowAnimation(((AnimationHelper.AnimationBuilder) AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER)).toShow()).withDismissAnimation(((AnimationHelper.AnimationBuilder) AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER)).toDismiss()).withClick(R.id.dismiss, (View.OnClickListener) null, true).blurBackground(true).outSideDismiss(false)).show();
     }
 
     public void downloadAbstract(String url){
@@ -358,21 +358,21 @@ public class EventDetailsActivity extends AppCompatActivity{
     }
 
 
-    class DownloadFile extends AsyncTask<String, String, String> {
+    class DownloadFile extends AsyncTask<String, String, String>{
 
         @Override
-        protected void onPreExecute() {
+        protected void onPreExecute(){
             super.onPreExecute();
             showDialog(0);
         }
 
-        protected void onProgressUpdate(String... progress) {
+        protected void onProgressUpdate(String... progress){
             // setting progress percentage
             pDialog.setProgress(Integer.parseInt(progress[0]));
         }
 
         @Override
-        protected String doInBackground(String... f_url) {
+        protected String doInBackground(String... f_url){
             int count;
             try {
                 URL url = new URL(f_url[0]);
@@ -415,8 +415,12 @@ public class EventDetailsActivity extends AppCompatActivity{
                 File file = new File(fullPath);
                 Intent target = new Intent(Intent.ACTION_VIEW);
                 String type;
-                if (fileType == "docx"){ type = "doc"; } else { type = "pdf"; }
-                target.setDataAndType(Uri.fromFile(file),"application/" + type);
+                if (fileType == "docx") {
+                    type = "doc";
+                } else {
+                    type = "pdf";
+                }
+                target.setDataAndType(Uri.fromFile(file), "application/" + type);
                 target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
                 Intent intent = Intent.createChooser(target, "Open File");
@@ -433,7 +437,7 @@ public class EventDetailsActivity extends AppCompatActivity{
             return null;
         }
 
-        protected void onPostExecute(String file_url) {
+        protected void onPostExecute(String file_url){
             // dismiss the dialog after the file was downloaded
             dismissDialog(0);
 
