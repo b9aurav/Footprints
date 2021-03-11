@@ -27,7 +27,6 @@ public class Social_ResponsibilityAdapter extends FirestoreRecyclerAdapter<Event
 
     Context context;
     FirebaseFirestore firebaseFirestore;
-    List<String> list;
     String title;
 
     public Social_ResponsibilityAdapter(Context context, @NonNull FirestoreRecyclerOptions<Event> options, String title){
@@ -58,12 +57,12 @@ public class Social_ResponsibilityAdapter extends FirestoreRecyclerAdapter<Event
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Event model){
+        List<String> list = new ArrayList<>();
         if(title.contains("Schitron")) {
             holder.Title.setText(model.getTitle());
             holder.Description.setText(model.getDescription());
             firebaseFirestore = FirebaseFirestore.getInstance();
             String path = this.getSnapshots().getSnapshot(position).getReference().getPath();
-            list = new ArrayList<>();
             Slider.init(new SliderService(context));
             firebaseFirestore.collection(path + "/" + "Images").get().addOnCompleteListener(task -> {
                 if(task.isSuccessful()) {
@@ -80,7 +79,6 @@ public class Social_ResponsibilityAdapter extends FirestoreRecyclerAdapter<Event
             holder.Description.setText(model.getDescription());
             firebaseFirestore = FirebaseFirestore.getInstance();
             String path = this.getSnapshots().getSnapshot(position).getReference().getPath();
-            list = new ArrayList<>();
             Slider.init(new SliderService(context));
             firebaseFirestore.collection(path + "/" + "Images").get().addOnCompleteListener(task -> {
                 if(task.isSuccessful()) {
