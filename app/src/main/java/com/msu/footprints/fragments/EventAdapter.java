@@ -35,7 +35,6 @@ public class EventAdapter extends FirestoreRecyclerAdapter<Event, EventAdapter.V
     private Context context;
     private int lastPosition = -1;
     QuickPopup popup;
-
     public EventAdapter(Context context, FirestoreRecyclerOptions<Event> options){
         super(options);
         this.context = context;
@@ -136,6 +135,7 @@ public class EventAdapter extends FirestoreRecyclerAdapter<Event, EventAdapter.V
             this.event_card = (CardView) itemView.findViewById(R.id.event_card);
 //            this.description = (TextView) itemView.findViewById(R.id.tvDescription);
             this.context = itemview.getContext();
+
         }
     }
 }

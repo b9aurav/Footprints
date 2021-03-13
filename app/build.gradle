@@ -64,6 +64,7 @@ dependencies {
     implementation 'com.ss.bannerslider:bannerslider:2.0.0'
     implementation 'com.github.skydoves:progressview:1.0.7'
 
+
     //Card View
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.github.armcha:ElasticView:0.2.0'
