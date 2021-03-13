@@ -16,17 +16,6 @@
             android:id="@+id/mSponsor"
             android:title="Sponsors"
             android:icon="@drawable/ic_sponsor"/>
-<!--        <item-->
-<!--            android:id="@+id/mShare"-->
-<!--            android:title="Share"-->
-<!--            android:icon="@drawable/ic_share"/>-->
-    </group>
-    <item android:title="Communicate"
-        android:iconTint="@color/white">
-        <menu>
-    <group
-        android:id="@+id/g2"
-        android:checkableBehavior="single">
         <item
             android:id="@+id/mContactUs"
             android:title="Contact Us"
@@ -36,6 +25,4 @@
             android:title="About"
             android:icon="@drawable/ic_aboutus"/>
     </group>
-        </menu>
-    </item>
 </menu>

@@ -30,7 +30,6 @@ public class AssemblyEventAdapter extends FirestoreRecyclerAdapter<Event, Assemb
 
     Context context;
     String title;
-    QuickPopup popup;
 
     public AssemblyEventAdapter(Context context, @NonNull FirestoreRecyclerOptions<Event> options, String title){
         super(options);
@@ -48,7 +47,6 @@ public class AssemblyEventAdapter extends FirestoreRecyclerAdapter<Event, Assemb
 
     @Override
     public void onViewDetachedFromWindow(@NonNull AssemblyEventAdapter.ViewHolder holder){
-        super.onViewDetachedFromWindow(holder);
         holder.assembly_card.clearAnimation();
     }
 

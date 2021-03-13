@@ -40,6 +40,8 @@ public class RollingSquares extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         titles = findViewById(R.id.titles);
+        toolbar.displayHomeAsUpEnabled(true);
+        toolbar.setOnMenuClickedListener(v -> onBackPressed());
         tvPrevious = findViewById(R.id.tvPrevious);
         titles.setText(title);
         tvPrevious.setText("Previous Concerts");

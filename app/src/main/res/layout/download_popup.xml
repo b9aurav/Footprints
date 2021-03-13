@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Downloading Abstract. Please Wait..."
+            android:text="Downloading File. Please Wait..."
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="17dp"

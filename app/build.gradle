@@ -18,6 +18,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -48,7 +53,9 @@ dependencies {
     //Firebase
     implementation 'com.google.firebase:firebase-firestore:22.1.1'
     implementation 'com.firebaseui:firebase-ui-firestore:6.2.1'
-
+    implementation 'com.google.firebase:firebase-crashlytics:17.4.0'
+    implementation 'com.google.firebase:firebase-analytics:18.0.2'
+    implementation platform('com.google.firebase:firebase-bom:26.7.0')
     //UI
     implementation 'com.agrawalsuneet.androidlibs:svgloaderspack:0.1'
     implementation 'com.github.developer-shivam:Diagonalify:1.1'
@@ -63,6 +70,7 @@ dependencies {
     implementation 'com.shreyaspatil:MaterialNavigationView:1.2'
     implementation 'com.ss.bannerslider:bannerslider:2.0.0'
     implementation 'com.github.skydoves:progressview:1.0.7'
+    implementation 'com.yarolegovich:discrete-scrollview:1.5.1'
 
 
     //Card View
@@ -76,3 +84,4 @@ dependencies {
 }
 
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
