@@ -42,6 +42,9 @@ public class Social_responsibility extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerview);
         firebaseFirestore = FirebaseFirestore.getInstance();
 
+        toolbar.displayHomeAsUpEnabled(true);
+        toolbar.setOnMenuClickedListener(v -> onBackPressed());
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         Query query = firebaseFirestore.collection(path + "/" + title);

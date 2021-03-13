@@ -22,6 +22,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.github.florent37.awesomebar.AwesomeBar;
 import com.google.android.material.navigation.NavigationView;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity{
     private static int WRITE_EXTERNAL_STORAGE_REQUEST_CODE = 1;
 
     public static AwesomeBar toolbar;
-    AdvanceDrawerLayout drawerLayout;
+    DrawerLayout drawerLayout;
     NavigationView navigationView;
     public static TextView titles;
 
@@ -94,11 +95,6 @@ public class MainActivity extends AppCompatActivity{
             report_popup();
             report_details();
         });
-
-        drawerLayout.setViewScale(GravityCompat.START, 0.8f);
-        drawerLayout.setViewElevation(GravityCompat.START, 20);
-        drawerLayout.setViewScrimColor(GravityCompat.START, Color.TRANSPARENT);
-        drawerLayout.setContrastThreshold(3);
 
         navigationView = findViewById(R.id.navigationView);
 

@@ -23,6 +23,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.msu.footprints.R;
 import com.msu.footprints.models.Event;
+import com.skydoves.progressview.ProgressView;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -42,7 +43,8 @@ import razerdp.widget.QuickPopup;
 
 public class EventDetailsActivity extends AppCompatActivity{
 
-    QuickPopup popup;
+    ProgressView progressView;
+    QuickPopup popup, download_popup;
     String pat;
     TextView tvVol1, tvVol2, tvVolEmail1, tvVolEmail2, tvVolMob1, tvVolMob2;
     ImageView cb_email, cb_contact, cb_email2, cb_contact2;
@@ -418,6 +420,11 @@ public class EventDetailsActivity extends AppCompatActivity{
         popup = QuickPopupBuilder.with(this).contentView(R.layout.volunteer_popup).config(new QuickPopupConfig().withShowAnimation(((AnimationHelper.AnimationBuilder) AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER)).toShow()).withDismissAnimation(((AnimationHelper.AnimationBuilder) AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER)).toDismiss()).withClick(R.id.dismiss, (View.OnClickListener) null, true).blurBackground(true).outSideDismiss(false)).show();
     }
 
+    public void download_popup() {
+        download_popup = QuickPopupBuilder.with(this).contentView(R.layout.download_popup).config(new QuickPopupConfig().withShowAnimation(((AnimationHelper.AnimationBuilder) AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER)).toShow()).withDismissAnimation(((AnimationHelper.AnimationBuilder) AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER)).toDismiss()).blurBackground(false).outSideDismiss(false)).show();
+        progressView = download_popup.findViewById(R.id.update_progress);
+    }
+
     public void downloadAbstract(String url){
         new DownloadFile().execute(url);
     }
@@ -428,12 +435,14 @@ public class EventDetailsActivity extends AppCompatActivity{
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            showDialog(0);
+            download_popup();
         }
 
         protected void onProgressUpdate(String... progress){
             // setting progress percentage
-            pDialog.setProgress(Integer.parseInt(progress[0]));
+            progressView.setProgress(Integer.parseInt(progress[0]));
+            progressView.setLabelText(Integer.parseInt(progress[0]) + "%");
+//            pDialog.setProgress(Integer.parseInt(progress[0]));
         }
 
         @Override
@@ -513,8 +522,8 @@ public class EventDetailsActivity extends AppCompatActivity{
 
         protected void onPostExecute(String file_url){
             // dismiss the dialog after the file was downloaded
-            dismissDialog(0);
-
+//            dismissDialog(0);
+            download_popup.dismiss();
         }
     }
 }

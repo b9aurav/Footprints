@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="25dp"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/bg_round_white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Downloading Abstract. Please Wait..."
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+        <com.skydoves.progressview.ProgressView
+            android:id="@+id/update_progress"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:progressView_autoAnimate="true"
+            app:progressView_colorBackground="@color/white"
+            app:progressView_colorProgress="@color/orange_logo"
+            app:progressView_labelColorInner="@color/white"
+            app:progressView_labelColorOuter="@color/black"
+            app:progressView_labelSize="13sp"
+            app:progressView_labelSpace="10dp"
+            app:progressView_labelTypeface="bold"
+            app:progressView_max="100"
+            app:progressView_min="0"
+            app:progressView_animation="normal"
+            app:progressView_progressFromPrevious="true"
+            android:visibility="visible"
+            app:progressView_padding="1dp"
+            app:progressView_highlighting="true"
+            app:progressView_highlightColor="@color/orange_logo"
+            android:textAlignment="center"
+            app:progressView_progress="0"
+            app:progressView_radius="12dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

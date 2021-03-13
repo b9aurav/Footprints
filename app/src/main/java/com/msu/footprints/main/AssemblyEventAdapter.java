@@ -49,13 +49,13 @@ public class AssemblyEventAdapter extends FirestoreRecyclerAdapter<Event, Assemb
     @Override
     public void onViewDetachedFromWindow(@NonNull AssemblyEventAdapter.ViewHolder holder){
         super.onViewDetachedFromWindow(holder);
-        holder.event_card.clearAnimation();
+        holder.assembly_card.clearAnimation();
     }
 
     @Override
     public void onViewAttachedToWindow(@NonNull AssemblyEventAdapter.ViewHolder holder){
         super.onViewAttachedToWindow(holder);
-        setScaleAnimation(holder.event_card);
+        setScaleAnimation(holder.assembly_card);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class AssemblyEventAdapter extends FirestoreRecyclerAdapter<Event, Assemb
                 .load(model.getImageURL())
                 .into(holder.banner);
 
-        holder.event_card.setOnClickListener(v -> {
+        holder.assembly_card.setOnClickListener(v -> {
             if (title.toLowerCase().equals("workshops") && model.isCurrent()) {
                 String path = this.getSnapshots().getSnapshot(position).getReference().getPath();
                 Intent intent;
@@ -120,7 +120,7 @@ public class AssemblyEventAdapter extends FirestoreRecyclerAdapter<Event, Assemb
         public TextView tvTitle;
         public TextView summary;
         public TextView description;
-        public CardView event_card;
+        public CardView assembly_card;
         //public TextView description;
         public Context context;
 
@@ -129,7 +129,7 @@ public class AssemblyEventAdapter extends FirestoreRecyclerAdapter<Event, Assemb
             this.banner = itemView.findViewById(R.id.ivEvent);
             this.tvTitle = itemView.findViewById(R.id.tvTitle);
             this.summary = itemView.findViewById(R.id.tvSummary);
-            this.event_card = itemView.findViewById(R.id.event_card);
+            this.assembly_card = itemView.findViewById(R.id.assembly_card);
             this.description = itemView.findViewById(R.id.tvDescription);
             this.context = itemview.getContext();
 
