@@ -117,10 +117,6 @@ public class EventDetailsActivity extends AppCompatActivity{
                         }
                     }
 
-                    if (document.getBoolean("Temp") != null) {
-                        Toast.makeText(getApplicationContext(), "In Developing...", Toast.LENGTH_LONG).show();
-                    }
-
                     tvDescription.setText(event.getDescription().replace("\\n", "\n"));
                     if (event.getFees() != null) {
                         tvFeeDes.setText(event.getFees());
@@ -297,7 +293,7 @@ public class EventDetailsActivity extends AppCompatActivity{
         switch (id) {
             case 0: // we set this to 0
                 pDialog = new ProgressDialog(this);
-                pDialog.setMessage("Downloading Abstract, Please wait...");
+                pDialog.setMessage("Downloading File, Please wait...");
                 pDialog.setIndeterminate(false);
                 pDialog.setMax(100);
                 pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -420,7 +416,7 @@ public class EventDetailsActivity extends AppCompatActivity{
         popup = QuickPopupBuilder.with(this).contentView(R.layout.volunteer_popup).config(new QuickPopupConfig().withShowAnimation(((AnimationHelper.AnimationBuilder) AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER)).toShow()).withDismissAnimation(((AnimationHelper.AnimationBuilder) AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER)).toDismiss()).withClick(R.id.dismiss, (View.OnClickListener) null, true).blurBackground(true).outSideDismiss(false)).show();
     }
 
-    public void download_popup() {
+    public void download_popup(){
         download_popup = QuickPopupBuilder.with(this).contentView(R.layout.download_popup).config(new QuickPopupConfig().withShowAnimation(((AnimationHelper.AnimationBuilder) AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER)).toShow()).withDismissAnimation(((AnimationHelper.AnimationBuilder) AnimationHelper.asAnimation().withScale(ScaleConfig.CENTER)).toDismiss()).blurBackground(false).outSideDismiss(false)).show();
         progressView = download_popup.findViewById(R.id.update_progress);
     }
@@ -447,6 +443,7 @@ public class EventDetailsActivity extends AppCompatActivity{
 
         @Override
         protected String doInBackground(String... f_url){
+            String fullPath = "";
             int count;
             try {
                 URL url = new URL(f_url[0]);
@@ -461,7 +458,7 @@ public class EventDetailsActivity extends AppCompatActivity{
                 InputStream input = new BufferedInputStream(url.openStream(), 8192);
 
                 // Output stream
-                String fullPath = Environment.getExternalStorageDirectory().toString() + "/Download/" + filename + "." + fileType;
+                fullPath = Environment.getExternalStorageDirectory().toString() + "/Download/" + filename + "." + fileType;
                 OutputStream output = new FileOutputStream(fullPath);
 
                 byte data[] = new byte[1024];
@@ -485,7 +482,6 @@ public class EventDetailsActivity extends AppCompatActivity{
                 output.close();
                 input.close();
 
-                File file = new File(fullPath);
 //                Intent target = new Intent(Intent.ACTION_VIEW);
 //                String type;
 //                if (fileType == "docx") {
@@ -501,29 +497,28 @@ public class EventDetailsActivity extends AppCompatActivity{
 
 
                 // Open file with user selected app
-                final Uri uri = FileProvider.getUriForFile(getApplicationContext(), "com.msu.footprints.fileprovider", file);
-                grantUriPermission(getApplicationContext().getPackageName(), uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                final Intent intent = new Intent(Intent.ACTION_VIEW)
-                        .setDataAndType(uri, "application/" + (fileType.equals("docx") ? "msword" : fileType))
-                        .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                startActivity(intent);
-                try {
-                    startActivity(intent);
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), "No application found for this file", Toast.LENGTH_SHORT).show();
-                }
 
 
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            return null;
+            return fullPath;
         }
 
         protected void onPostExecute(String file_url){
             // dismiss the dialog after the file was downloaded
 //            dismissDialog(0);
             download_popup.dismiss();
+            final Uri uri = FileProvider.getUriForFile(getApplicationContext(), "com.msu.footprints.fileprovider", new File(file_url));
+            grantUriPermission(getApplicationContext().getPackageName(), uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            final Intent intent = new Intent(Intent.ACTION_VIEW)
+                    .setDataAndType(uri, "application/" + (fileType.equals("docx") ? "msword" : fileType))
+                    .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            try {
+                startActivity(intent);
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), "No application found for this file", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

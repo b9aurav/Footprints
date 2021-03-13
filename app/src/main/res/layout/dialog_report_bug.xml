@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
     android:layout_margin="25dp"
-    android:orientation="vertical"
-    android:background="@drawable/bg_round_white">
+    android:background="@drawable/bg_round_white"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,38 +16,37 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/orange_logo"
-            android:text="Please tell me about issue."
-            android:textSize="16dp"
-            android:fontFamily="sans-serif-smallcaps"
-            android:paddingLeft="5dp"
-            android:paddingTop="5dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
-            />
+            android:fontFamily="sans-serif-smallcaps"
+            android:paddingStart="5dp"
+            android:paddingTop="5dp"
+            android:text="Please tell us about issue."
+            android:textColor="@color/orange_logo"
+            android:textSize="16sp" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:hint="Description"
-        app:errorEnabled="false"
-        app:boxStrokeColor="@color/orange_logo"
-        app:hintTextColor="@color/orange_logo"
-        app:hintAnimationEnabled="true"
-        app:boxBackgroundMode="filled">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etReportDescription"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="top|left"
-            android:inputType="text|textMultiLine|textNoSuggestions"
-            android:lines="4"
-            android:textCursorDrawable="@drawable/cursor"
-            android:maxLines="10" />
+            android:layout_margin="5dp"
+            android:hint="Description"
+            app:boxBackgroundMode="filled"
+            app:boxStrokeColor="@color/orange_logo"
+            app:errorEnabled="false"
+            app:hintAnimationEnabled="true"
+            app:hintTextColor="@color/orange_logo">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etReportDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|left"
+                android:inputType="text|textMultiLine|textNoSuggestions"
+                android:lines="4"
+                android:maxLines="10"
+                android:textCursorDrawable="@drawable/cursor" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 
@@ -60,24 +59,24 @@
             android:id="@+id/submit"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:textSize="18dp"
-            android:textColor="@color/white"
-            android:gravity="center"
             android:layout_weight="1"
+            android:background="@drawable/popup_button_bg_left"
+            android:gravity="center"
             android:text="Submit"
-            android:background="@drawable/popup_button_bg_left"/>
+            android:textColor="@color/white"
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/dismiss"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:textSize="18dp"
+            android:layout_marginStart="-2dp"
             android:layout_weight="1"
-            android:textColor="@color/white"
+            android:background="@drawable/popup_button_bg_right"
             android:gravity="center"
             android:text="Dismiss"
-            android:background="@drawable/popup_button_bg_right"
-            android:layout_marginStart="-2dp"/>
+            android:textColor="@color/white"
+            android:textSize="18dp" />
 
     </LinearLayout>
 

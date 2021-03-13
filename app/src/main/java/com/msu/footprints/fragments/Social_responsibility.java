@@ -30,7 +30,7 @@ public class Social_responsibility extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.social_responsibility);
+        setContentView(R.layout.activity_social_responsibility);
 
         Intent intent = getIntent();
         path = intent.getStringExtra("Path");

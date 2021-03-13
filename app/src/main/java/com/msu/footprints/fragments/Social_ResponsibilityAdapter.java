@@ -98,7 +98,6 @@ public class Social_ResponsibilityAdapter extends FirestoreRecyclerAdapter<Event
         view.startAnimation(anim);
     }
 
-
     public class ViewHolder extends RecyclerView.ViewHolder{
         public Slider slider;
         public TextView Title;
